@@ -5,9 +5,23 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:QuziLab"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        <Button Content="Button" HorizontalAlignment="Left" Margin="336,162,0,0" VerticalAlignment="Top"/>
+        Title="QuizLab - generator quizów" Height="518" Width="800" FontSize="18">
+    <Grid x:Name="main_Grid">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        
+        <Border Grid.Column="0" Background="#FF392763" Padding="10">
+            <StackPanel>
+                <TextBlock Text="LOGO" FontSize="24" Foreground="White" Margin="0,0,0,20"/>
+                <Button Content="Quizy" Margin="0,0,0,5" Style="{StaticResource mainButton}"/>
+                <Button Content="Dodaj Quiz" Margin="0,0,0,5" Style="{StaticResource mainButton}"/>
+                <Button Content="Wyniki" Margin="0,0,0,5" Style="{StaticResource mainButton}"/>
+                <Button Content="Ustawienia" Margin="0,0,0,5" Style="{StaticResource mainButton}"/>
+            </StackPanel>
+        </Border>
+        <ContentControl Grid.Column="1" x:Name="contentControl" Background="WhiteSmoke"/>
 
     </Grid>
 </Window>
