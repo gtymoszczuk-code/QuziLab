@@ -13,6 +13,10 @@
     <None Remove="Fonts\UniNeueBook.ttf" />
     <None Remove="Fonts\UniNeueHeavy.ttf" />
     <None Remove="Fonts\UniNeueRegular.ttf" />
+    <None Remove="img\logo-image.png" />
+    <None Remove="img\Quizlab-logo-dark.png" />
+    <None Remove="img\Quizlab-logo.png" />
+    <None Remove="Quizlab-logo-dark.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -28,6 +32,10 @@
     <Resource Include="Fonts\UniNeueRegular.ttf">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="img\logo-image.png" />
+    <Resource Include="img\Quizlab-logo-dark.png" />
+    <Resource Include="img\Quizlab-logo.png" />
+    <Resource Include="Quizlab-logo-dark.png" />
   </ItemGroup>
 
 </Project>

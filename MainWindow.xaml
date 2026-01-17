@@ -5,23 +5,52 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:QuziLab"
         mc:Ignorable="d"
-        Title="QuizLab - generator quizów" Height="518" Width="800" FontSize="18">
+        Title="QuizLab - generator quizów" Height="500" Width="800" FontSize="18">
     <Grid x:Name="main_Grid">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="200"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        
-        <Border Grid.Column="0" Background="#FF392763" Padding="10">
-            <StackPanel>
-                <TextBlock Text="LOGO" FontSize="24" Foreground="White" Margin="0,0,0,20"/>
-                <Button Content="Quizy" Margin="0,0,0,5" Style="{StaticResource mainButton}"/>
-                <Button Content="Dodaj Quiz" Margin="0,0,0,5" Style="{StaticResource mainButton}"/>
-                <Button Content="Wyniki" Margin="0,0,0,5" Style="{StaticResource mainButton}"/>
-                <Button Content="Ustawienia" Margin="0,0,0,5" Style="{StaticResource mainButton}"/>
-            </StackPanel>
+
+        <Border Grid.Column="0" Background="#180C6D" Padding="0">
+            <DockPanel LastChildFill="True">
+                <Image x:Name="logo" Height="91" Width="70" DockPanel.Dock="Top" Source="/Quizlab-logo-dark.png" StretchDirection="DownOnly" Margin="0,30,0,0"/>
+                <StackPanel VerticalAlignment="Center" Margin="0,-100,0,0">
+                    <RadioButton 
+                        Name="BtnStart"
+                        Content="Start" 
+                        Style="{StaticResource menuButtonStyle}" 
+                        GroupName="MenuButtons" 
+                        IsChecked="True" 
+                        Click="BtnStart_Click"/>
+
+                    <RadioButton
+                        Name="BtnQuizy"
+                        Content="Quizy" 
+                        Style="{StaticResource menuButtonStyle}" 
+                        GroupName="MenuButtons" 
+                        Click="BtnQuizy_Click"/>
+
+                    <RadioButton 
+                        Name="BtnWyniki"
+                        Content="Wyniki" 
+                        Style="{StaticResource menuButtonStyle}" 
+                        GroupName="MenuButtons" 
+                        Click="BtnWyniki_Click"/>
+
+                    <RadioButton
+                        Name="BtnAbout"
+                        Content="O aplikacji" 
+                        Style="{StaticResource menuButtonStyle}" 
+                        GroupName="MenuButtons" 
+                        Click="BtnAbout_Click"/>
+                </StackPanel>
+            </DockPanel>
         </Border>
-        <ContentControl Grid.Column="1" x:Name="contentControl" Background="WhiteSmoke"/>
+        <ContentControl Grid.Column="1" x:Name="contentControl" Foreground="#453F73"  Background="#EEEEFF">
+
+
+        </ContentControl>
 
     </Grid>
 </Window>

@@ -1,0 +1,45 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
+using System.Windows.Shapes;
+
+namespace QuziLab
+{
+    /// <summary>
+    /// Logika interakcji dla klasy Start.xaml
+    /// </summary>
+    public partial class Start : UserControl
+    {
+        public Start()
+        {
+            InitializeComponent();
+        }
+
+        private void BtnGoToQuizy_Click(object sender, RoutedEventArgs e)
+        {
+            // 1. Znajdujemy główne okno aplikacji
+            var mainWindow = Window.GetWindow(this) as MainWindow;
+
+            if (mainWindow != null)
+            {
+                // 2. Wywołujemy zmianę strony (używając Twojej metody z MainWindow)
+                mainWindow.contentControl.Content = new Quizy();
+                mainWindow.BtnQuizy.IsChecked = true;
+
+                // OPCJONALNIE: Jeśli chcesz, żeby w menu bocznym też "odznaczył się" 
+                // przycisk Start i zaznaczył Quizy, musisz dać im nazwy (x:Name) w MainWindow
+                // np: mainWindow.radioQuizy.IsChecked = true;
+            }
+        }
+    }
+}

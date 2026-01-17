@@ -19,6 +19,32 @@ namespace QuziLab
         public MainWindow()
         {
             InitializeComponent();
+            ChangePage(new Start()); // Aplikacja zacznie od strony Start
+        }
+
+        private void ChangePage(UserControl newPage)
+        {
+            contentControl.Content = newPage;
+        }
+
+        private void BtnStart_Click(object sender, RoutedEventArgs e)
+        {
+            ChangePage(new Start());
+        }
+
+        private void BtnQuizy_Click(object sender, RoutedEventArgs e)
+        {
+            ChangePage(new Quizy());
+        }
+        private void BtnWyniki_Click(object sender, RoutedEventArgs e)
+        {
+            ChangePage(new Wyniki());
+        }
+
+        private void BtnAbout_Click(object sender, RoutedEventArgs e)
+        {
+            ChangePage(new About());
         }
     }
+
 }
