@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,12 +16,37 @@ using System.Windows.Shapes;
 
 namespace QuziLab
 {
+    
+   
+    
 
     public partial class Quizy : UserControl
     {
         public Quizy()
         {
             InitializeComponent();
+
+            // 2. LISTĘ ATRAP
+            var atrapy = new List<Quiz>
+            {
+                new Quiz { Title = "Geografia Świata", QuestionsCount = 20 },
+                new Quiz { Title = "Historia Polski", QuestionsCount = 15 },
+                new Quiz { Title = "Matematyka", QuestionsCount = 10 },
+                new Quiz { Title = "Biologia - Komórki", QuestionsCount = 30 }
+
+            };
+
+            // 3. przekazanie listy atrap do ListBoxa
+            QuizListBox.ItemsSource = atrapy;
         }
+    }
+
+    public class NullToBoolConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        => value != null; // Jeśli obiekt nie jest nullem, zwróć true
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        => throw new NotImplementedException();
     }
 }

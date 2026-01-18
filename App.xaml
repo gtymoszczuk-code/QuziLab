@@ -11,10 +11,12 @@
 
         <Style TargetType="{x:Type Control}">
             <Setter Property="FontFamily" Value="{StaticResource MainFont}" />
+            <Setter Property="FontWeight" Value="Regular" />
         </Style>
 
         <Style TargetType="{x:Type TextBlock}">
             <Setter Property="FontFamily" Value="{StaticResource MainFont}" />
+            <Setter Property="FontWeight" Value="Regular" />
         </Style>
 
         <!-- Styl buttonu "menuButton -->
@@ -86,6 +88,38 @@
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
+        </Style>
+
+        <!-- RoundedButton styl-->
+        
+        <Style x:Key="RoundedButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="#4B40F6"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Padding" Value="20,5"/>
+            <Setter Property="MinHeight" Value="30"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Margin" Value="0,0"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" 
+                            CornerRadius="6" 
+                            Padding="{TemplateBinding Padding}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#3A30D6"/>
+                </Trigger>
+                <Trigger Property="IsEnabled" Value="False">
+                    <Setter Property="Foreground" Value="white"/>
+                    <Setter Property="Background" Value="#B7B8FF"/>
+                </Trigger>
+            </Style.Triggers>
         </Style>
 
 
