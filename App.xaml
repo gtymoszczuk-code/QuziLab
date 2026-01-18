@@ -17,7 +17,7 @@
             <Setter Property="FontFamily" Value="{StaticResource MainFont}" />
         </Style>
 
-        <!-- Styl buttonu "mainButton -->
+        <!-- Styl buttonu "menuButton -->
 
         <Style x:Key="menuButtonStyle" TargetType="RadioButton">
             <Setter Property="Background" Value="Transparent" />

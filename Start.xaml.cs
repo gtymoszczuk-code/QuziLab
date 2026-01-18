@@ -15,9 +15,7 @@ using System.Windows.Shapes;
 
 namespace QuziLab
 {
-    /// <summary>
-    /// Logika interakcji dla klasy Start.xaml
-    /// </summary>
+    
     public partial class Start : UserControl
     {
         public Start()
@@ -32,13 +30,11 @@ namespace QuziLab
 
             if (mainWindow != null)
             {
-                // 2. Wywołujemy zmianę strony (używając Twojej metody z MainWindow)
+                // 2. Wywołujemy zmianę strony
                 mainWindow.contentControl.Content = new Quizy();
                 mainWindow.BtnQuizy.IsChecked = true;
 
-                // OPCJONALNIE: Jeśli chcesz, żeby w menu bocznym też "odznaczył się" 
-                // przycisk Start i zaznaczył Quizy, musisz dać im nazwy (x:Name) w MainWindow
-                // np: mainWindow.radioQuizy.IsChecked = true;
+              
             }
         }
     }

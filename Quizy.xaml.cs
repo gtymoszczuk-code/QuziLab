@@ -15,9 +15,7 @@ using System.Windows.Shapes;
 
 namespace QuziLab
 {
-    /// <summary>
-    /// Logika interakcji dla klasy Quizy.xaml
-    /// </summary>
+
     public partial class Quizy : UserControl
     {
         public Quizy()

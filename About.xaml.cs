@@ -15,9 +15,7 @@ using System.Windows.Shapes;
 
 namespace QuziLab
 {
-    /// <summary>
-    /// Logika interakcji dla klasy About.xaml
-    /// </summary>
+ 
     public partial class About : UserControl
     {
         public About()
