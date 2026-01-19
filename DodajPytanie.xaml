@@ -1,0 +1,76 @@
+﻿<UserControl x:Class="QuziLab.DodajPytanie"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:QuziLab"
+             mc:Ignorable="d" 
+             d:DesignHeight="500" d:DesignWidth="600">
+
+    <Grid Background="#F5F6FF">
+        <StackPanel Margin="40">
+            <TextBlock Text="Dodaj Pytanie" Style="{StaticResource PageTitle}" Margin="0,0,0,20"/>
+
+            <Grid Margin="0,0,0,10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="120"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <TextBlock Grid.Row="0" Text="Pytanie:" VerticalAlignment="Center" Foreground="#333" Margin="0,0,0,15"/>
+                <TextBox Grid.Row="0" Grid.Column="1" Style="{StaticResource ModernTextBox}" x:Name="PytanieInput" Margin="0,0,0,15"/>
+
+                <TextBlock Grid.Row="1" Text="Odpowiedź A:" VerticalAlignment="Center" Foreground="#333" Margin="0,0,0,15"/>
+                <TextBox Grid.Row="1" Grid.Column="1" Style="{StaticResource ModernTextBox}" x:Name="OdpAInput" Margin="0,0,0,15"/>
+
+                <TextBlock Grid.Row="2" Text="Odpowiedź B:" VerticalAlignment="Center" Foreground="#333" Margin="0,0,0,15"/>
+                <TextBox Grid.Row="2" Grid.Column="1" Style="{StaticResource ModernTextBox}" x:Name="OdpBInput" Margin="0,0,0,15"/>
+
+                <TextBlock Grid.Row="3" Text="Odpowiedź C:" VerticalAlignment="Center" Foreground="#333" Margin="0,0,0,15"/>
+                <TextBox Grid.Row="3" Grid.Column="1" Style="{StaticResource ModernTextBox}" x:Name="OdpCInput" Margin="0,0,0,15"/>
+
+                <TextBlock Grid.Row="4" Text="Odpowiedź D:" VerticalAlignment="Center" Foreground="#333" Margin="0,0,0,15"/>
+                <TextBox Grid.Row="4" Grid.Column="1" Style="{StaticResource ModernTextBox}" x:Name="OdpDInput" Margin="0,0,0,15"/>
+
+                <TextBlock Grid.Row="5" Text="Odpowiedź E:" VerticalAlignment="Center" Foreground="#333" Margin="0,0,0,15"/>
+                <TextBox Grid.Row="5" Grid.Column="1" Style="{StaticResource ModernTextBox}" x:Name="OdpEInput" Margin="0,0,0,15"/>
+
+                <TextBlock Grid.Row="6" Text="Poprawna:" VerticalAlignment="Center" Foreground="#333"/>
+
+                <Grid Grid.Row="6" Grid.Column="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+
+                    <TextBox Grid.Column="0" Style="{StaticResource ModernTextBox}" Width="60" 
+                             x:Name="PoprawnaInput" HorizontalContentAlignment="Center"/>
+
+                    <StackPanel Grid.Column="2" Orientation="Horizontal">
+                        <Button Content="Usuń odp." Style="{StaticResource RoundedButtonStyle}" 
+                                Margin="10,5,0,5"/>
+                        <Button Content="Dodaj odp." Style="{StaticResource RoundedButtonStyle}" 
+                               IsEnabled="False" Margin="10,5,0,5" />
+                    </StackPanel>
+                </Grid>
+            </Grid>
+
+            <Grid Margin="0,0,0,0">
+                <Button Content="wróć" Style="{StaticResource LinkButton}" 
+                        HorizontalAlignment="Left" VerticalAlignment="Center" Click="BackBtn_Click"/>
+                <Button Content="Dodaj" Style="{StaticResource RoundedButtonStyle}" 
+                        HorizontalAlignment="Right" Width="140" Height="35"/>
+            </Grid>
+        </StackPanel>
+    </Grid>
+</UserControl>

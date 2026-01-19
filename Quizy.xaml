@@ -5,62 +5,30 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:QuziLab"
              mc:Ignorable="d" 
-             d:DesignHeight="500" d:DesignWidth="600">
+             d:DesignHeight="500" d:DesignWidth="602">
 
     <UserControl.Resources>
         <local:NullToBoolConverter x:Key="NullToBoolConverter"/>
-
-        
     </UserControl.Resources>
 
-    <Grid Background="#F5F6FF" Width="602">
+    <Grid Background="#F5F6FF">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
 
-        <TextBlock Text="Twoje Quizy" FontSize="22" Foreground="#453F73" 
-                   Margin="40,30,0,10" HorizontalAlignment="Left" FontFamily="Uni Neue Regular"/>
+        <TextBlock Text="Twoje Quizy" Style="{StaticResource PageTitle}" Margin="40,30,0,10"/>
 
-        <Border Grid.Row="1" Background="#E0DCFF" CornerRadius="6" Margin="40,10" Padding="0,20,0,20" BorderThickness="0">
-            <ListBox x:Name="QuizListBox" AlternationCount="2" BorderThickness="0" Background="Transparent"
-                     HorizontalContentAlignment="Stretch"
-             FocusVisualStyle="{x:Null}">
-
-                <ListBox.ItemContainerStyle>
-                    <Style TargetType="ListBoxItem">
-                        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
-                        <Setter Property="Padding" Value="0"/>
-                        <Setter Property="Template">
-                            <Setter.Value>
-                                <ControlTemplate TargetType="ListBoxItem">
-                                    <Border x:Name="ItemBorder" Background="Transparent" CornerRadius="0" Margin="0" Padding="10">
-                                        <ContentPresenter />
-                                    </Border>
-                                    <ControlTemplate.Triggers>
-                                        <Trigger Property="ItemsControl.AlternationIndex" Value="0">
-                                            <Setter TargetName="ItemBorder" Property="Background" Value="#E8E5FF"/>
-                                        </Trigger>
-                                        <Trigger Property="IsSelected" Value="True">
-                                            <Setter TargetName="ItemBorder" Property="Background" Value="#A098FF"/>
-                                            <Setter Property="Foreground" Value="White"/>
-                                           
-                                            
-                                        </Trigger>
-                                        <Trigger Property="IsMouseOver" Value="True">
-                                         
-                                        </Trigger>
-                                    </ControlTemplate.Triggers>
-                                </ControlTemplate>
-                            </Setter.Value>
-                        </Setter>
-                    </Style>
-                </ListBox.ItemContainerStyle>
+        <Border Grid.Row="1" Margin="40,10" CornerRadius="6" BorderThickness="0">
+            <ListBox x:Name="QuizListBox" 
+                     Style="{StaticResource ModernListBox}" 
+                     ItemContainerStyle="{StaticResource ModernListBoxItem}"
+                     AlternationCount="2">
 
                 <ListBox.ItemTemplate>
                     <DataTemplate>
-                        <Grid d:DesignWidth="600">
+                        <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"/>
                                 <ColumnDefinition Width="Auto"/>
@@ -69,7 +37,8 @@
                             <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
                                 <TextBlock Text="{Binding Title}" FontSize="14" VerticalAlignment="Center" />
                                 <TextBlock Text="{Binding QuestionsCount, StringFormat='({0} pytań)'}" 
-                                           Margin="10,0"  FontSize="14" VerticalAlignment="Center"/>
+                                           Margin="10,0" FontSize="14" VerticalAlignment="Center"
+                                           Opacity="0.7"/>
                             </StackPanel>
 
                             <StackPanel Grid.Column="1" Orientation="Horizontal">
@@ -83,13 +52,21 @@
         </Border>
 
         <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="40,10,40,30">
-            <Button Content="Usuń" Style="{StaticResource RoundedButtonStyle}" Margin="0,0,10,0"
+            <Button Content="Usuń" 
+                    Style="{StaticResource RoundedButtonStyle}" 
+                    
+                    Margin="0,0,10,0"
                     IsEnabled="{Binding SelectedItem, ElementName=QuizListBox, Converter={StaticResource NullToBoolConverter}}"/>
 
-            <Button Content="Edytuj" Style="{StaticResource  RoundedButtonStyle}" Margin="0,0,10,0"
+            <Button Content="Edytuj" 
+                    Style="{StaticResource RoundedButtonStyle}" 
+                    
+                    Margin="0,0,10,0"
                     IsEnabled="{Binding SelectedItem, ElementName=QuizListBox, Converter={StaticResource NullToBoolConverter}}"/>
 
-            <Button Content="Nowy Quiz" Style="{StaticResource  RoundedButtonStyle}" />
+            <Button Content="Nowy Quiz" 
+                    Style="{StaticResource RoundedButtonStyle}"
+                    Click="NowyQuiz_Click" />
         </StackPanel>
     </Grid>
 </UserControl>

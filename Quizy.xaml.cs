@@ -39,14 +39,18 @@ namespace QuziLab
             // 3. przekazanie listy atrap do ListBoxa
             QuizListBox.ItemsSource = atrapy;
         }
+
+        private void NowyQuiz_Click(object sender, RoutedEventArgs e)
+        {
+            // Szukamy głównego okna i podmieniamy zawartość
+            var mainWindow = Window.GetWindow(this) as MainWindow;
+            if (mainWindow != null)
+            {
+                mainWindow.contentControl.Content = new StworzQuiz();
+            }
+        }
     }
 
-    public class NullToBoolConverter : IValueConverter
-    {
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
-        => value != null; // Jeśli obiekt nie jest nullem, zwróć true
 
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
-        => throw new NotImplementedException();
+   
     }
-}
