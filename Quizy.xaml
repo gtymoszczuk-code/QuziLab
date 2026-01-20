@@ -45,7 +45,7 @@
 
                             <StackPanel Grid.Column="1" Orientation="Horizontal">
                                 <Button Content="Nauka" Style="{StaticResource RoundedButtonStyle}" Margin="0,0,10,0" Width="80"/>
-                                <Button Content="Test" Style="{StaticResource RoundedButtonStyle}" Width="80"/>
+                                <Button Content="Test" Click="Test_Click"  Style="{StaticResource RoundedButtonStyle}" Width="80"/>
                             </StackPanel>
                         </Grid>
                     </DataTemplate>

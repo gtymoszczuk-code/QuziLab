@@ -1,0 +1,74 @@
+﻿<UserControl x:Class="QuziLab.UstawieniaTestu"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:QuziLab"
+             mc:Ignorable="d" 
+             d:DesignHeight="500" d:DesignWidth="600">
+
+    <Grid Background="#F5F6FF">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0" Text="Nowy Test" Style="{StaticResource PageTitle}" Margin="40,30,0,0"/>
+
+        <Grid Grid.Row="1" VerticalAlignment="Center">
+            <Border Style="{StaticResource SettingsBoxStyle}" HorizontalAlignment="Center">
+                <StackPanel>
+
+                    <Grid Margin="0,0,0,10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="150"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="Liczba pytań" VerticalAlignment="Center" Foreground="#333"/>
+
+                        <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center">
+                            <TextBox Text="10" Style="{StaticResource NumericInputStyle}" x:Name="QuestionsCountInput"/>
+                            <StackPanel Margin="5,0,0,0" VerticalAlignment="Center">
+                                <Button Content="+" Click="btn_increment"  Style="{StaticResource NumericBtnStyle}" Height="18" Margin="0,0,0,2"/>
+                                <Button Content="-" Click="btn_decrement" Style="{StaticResource NumericBtnStyle}" Height="18"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </Grid>
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="150"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="Czas testu (min)" VerticalAlignment="Center" Foreground="#333"/>
+
+                        <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center">
+                            <TextBox Text="15" Style="{StaticResource NumericInputStyle}" x:Name="TestTimeInput"/>
+                            <StackPanel Margin="5,0,0,0" VerticalAlignment="Center">
+                                <Button Content="+" Click="btn_increment"  Style="{StaticResource NumericBtnStyle}" Height="18" Margin="0,0,0,2"/>
+                                <Button Content="-" Click="btn_decrement" Style="{StaticResource NumericBtnStyle}" Height="18"/>
+                            </StackPanel>
+                        </StackPanel>
+                       
+                    </Grid>
+
+                </StackPanel>
+            </Border>
+        </Grid>
+
+        <Grid Grid.Row="2" Margin="40,0,40,30">
+            <Button Content="wróć" 
+                    Style="{StaticResource LinkButton}" 
+                    HorizontalAlignment="Left" 
+                    VerticalAlignment="Center"
+                    Click="BackBtn_Click"/>
+
+            <Button Content="Rozpocznij test" 
+                    Style="{StaticResource RoundedButtonStyle}" 
+                    HorizontalAlignment="Right" 
+                    Width="160" Height="40"/>
+        </Grid>
+    </Grid>
+</UserControl>

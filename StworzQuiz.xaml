@@ -32,7 +32,7 @@
                 <TextBlock Text="Lista pytań:" VerticalAlignment="Top" Margin="0,0,0,0" Foreground="#333"/>
 
                 <StackPanel Grid.Column="1" >
-                    <ListBox x:Name="QuestionsListBox" Height="200" Style="{StaticResource ModernListBox}" ItemsSource="{Binding Questions}" DisplayMemberPath="Content">
+                    <ListBox x:Name="QuestionsListBox" Height="200" Style="{StaticResource ModernListBox}" ItemContainerStyle="{StaticResource ModernListBoxItem}" ItemsSource="{Binding Questions}" DisplayMemberPath="Content">
 
                     </ListBox>
 
