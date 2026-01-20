@@ -46,7 +46,7 @@
 
             <Grid Margin="0,20,0,0">
                 <Button Content="wróć" x:Name="BackBtn" Style="{StaticResource LinkButton}" HorizontalAlignment="Left" VerticalAlignment="Center" Click="BackBtn_Click"/>
-                <Button Content="Stwórz Quiz" Style="{StaticResource RoundedButtonStyle}" HorizontalAlignment="Right" Width="140" />
+                <Button x:Name="SaveQuiz" Content="Stwórz Quiz" Style="{StaticResource RoundedButtonStyle}" HorizontalAlignment="Right" Width="140" Click="SaveQuiz_Click" />
             </Grid>
         </StackPanel>
     </Grid>
