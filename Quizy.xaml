@@ -23,7 +23,9 @@
         <Border Grid.Row="1" Margin="40,10" CornerRadius="6" BorderThickness="0">
             <ListBox x:Name="QuizListBox" 
                      Style="{StaticResource ModernListBox}" 
+                     ItemsSource="{Binding LoadedQuizzes}" 
                      ItemContainerStyle="{StaticResource ModernListBoxItem}"
+                     SelectionMode="Single"
                      AlternationCount="2">
 
                 <ListBox.ItemTemplate>

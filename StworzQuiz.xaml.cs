@@ -90,6 +90,11 @@ namespace QuziLab
             File.WriteAllText(filePath, json);
 
             MessageBox.Show($"Quiz zapisany do pliku {filePath}");
+
+            var mainWindow = Window.GetWindow(this) as MainWindow;
+            if (mainWindow != null)
+                mainWindow.contentControl.Content = new Quizy();
+
         }
     }
 }
