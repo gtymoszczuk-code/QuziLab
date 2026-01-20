@@ -38,6 +38,19 @@ namespace QuziLab
             }
         }
 
+        private void RozpocznijBtn_Click(object sender, RoutedEventArgs e)
+        {
+            // 1. Znajdujemy główne okno aplikacji
+            var mainWindow = Window.GetWindow(this) as MainWindow;
+
+            // 2. Jeśli okno istnieje i ma obszar treści, podmieniamy widok
+            if (mainWindow != null && mainWindow.contentControl != null)
+            {
+                // 3. Tworzymy nową instancję strony Quizy i ustawiamy ją jako aktualną
+                mainWindow.contentControl.Content = new Test();
+            }
+        }
+
         //przycisk inkrementacji inputa
         public void btn_increment(object sender, RoutedEventArgs e)
         {

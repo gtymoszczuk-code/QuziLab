@@ -68,7 +68,9 @@
             <Button Content="Rozpocznij test" 
                     Style="{StaticResource RoundedButtonStyle}" 
                     HorizontalAlignment="Right" 
-                    Width="160" Height="40"/>
+                    Width="160" Height="40"
+                    Click="RozpocznijBtn_Click"
+                    />
         </Grid>
     </Grid>
 </UserControl>
