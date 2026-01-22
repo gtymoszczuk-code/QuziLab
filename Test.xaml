@@ -28,11 +28,11 @@
 
             <Border Style="{StaticResource SettingsBoxStyle}" HorizontalAlignment="Stretch">
                 <StackPanel>
-                    <RadioButton Content="A. 11" Style="{StaticResource ModernRadioButton}" GroupName="Answers"/>
-                    <RadioButton Content="B. 7" Style="{StaticResource ModernRadioButton}" GroupName="Answers"/>
-                    <RadioButton Content="C. traktor" Style="{StaticResource ModernRadioButton}" GroupName="Answers"/>
-                    <RadioButton Content="D. Nie ma żadnych" Style="{StaticResource ModernRadioButton}" GroupName="Answers"/>
-                    <RadioButton Content="E. 8" Style="{StaticResource ModernRadioButton}" GroupName="Answers"/>
+                    <RadioButton x:Name="OdpA" Content="A. 11" Style="{StaticResource ModernRadioButton}" GroupName="Answers"/>
+                    <RadioButton x:Name="OdpB" Content="B. 7" Style="{StaticResource ModernRadioButton}" GroupName="Answers"/>
+                    <RadioButton x:Name="OdpC" Content="C. traktor" Style="{StaticResource ModernRadioButton}" GroupName="Answers"/>
+                    <RadioButton x:Name="OdpD" Content="D. Nie ma żadnych" Style="{StaticResource ModernRadioButton}" GroupName="Answers"/>
+                    <RadioButton x:Name="OdpE" Content="E. 8" Style="{StaticResource ModernRadioButton}" GroupName="Answers"/>
                 </StackPanel>
             </Border>
         </StackPanel>
@@ -41,10 +41,10 @@
             <Button Content="Zakończ test" Style="{StaticResource LinkButton}" 
                     HorizontalAlignment="Left" VerticalAlignment="Center" Click="FinishBtn_Click"/>
 
-            <Button Content="Następne" 
+            <Button x:Name="Next" Content="Następne" 
                     Style="{StaticResource RoundedButtonStyle}" 
                     HorizontalAlignment="Right" 
-                    Width="140" Height="40"/>
+                    Width="140" Height="40" Click="Next_Click"/>
         </Grid>
     </Grid>
 </UserControl>

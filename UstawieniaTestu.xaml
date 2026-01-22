@@ -28,7 +28,7 @@
                         <TextBlock Text="Liczba pytań" VerticalAlignment="Center" Foreground="#333"/>
 
                         <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center">
-                            <TextBox Text="10" Style="{StaticResource NumericInputStyle}" x:Name="QuestionsCountInput"/>
+                            <TextBox Text="5" Style="{StaticResource NumericInputStyle}" x:Name="QuestionsCountInput"/>
                             <StackPanel Margin="5,0,0,0" VerticalAlignment="Center">
                                 <Button Content="+" Click="btn_increment"  Style="{StaticResource NumericBtnStyle}" Height="18" Margin="0,0,0,2"/>
                                 <Button Content="-" Click="btn_decrement" Style="{StaticResource NumericBtnStyle}" Height="18"/>
@@ -45,7 +45,7 @@
                         <TextBlock Text="Czas testu (min)" VerticalAlignment="Center" Foreground="#333"/>
 
                         <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center">
-                            <TextBox Text="15" Style="{StaticResource NumericInputStyle}" x:Name="TestTimeInput"/>
+                            <TextBox Text="1" Style="{StaticResource NumericInputStyle}" x:Name="TestTimeInput"/>
                             <StackPanel Margin="5,0,0,0" VerticalAlignment="Center">
                                 <Button Content="+" Click="btn_increment"  Style="{StaticResource NumericBtnStyle}" Height="18" Margin="0,0,0,2"/>
                                 <Button Content="-" Click="btn_decrement" Style="{StaticResource NumericBtnStyle}" Height="18"/>

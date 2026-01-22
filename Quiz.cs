@@ -16,8 +16,10 @@ namespace QuziLab
         public string Author { get; set; }
         public string BestScore { get; set; }
         public List<Question> Questions { get; set; } = new();
+        public string FilePath { get; set; }
     }
 
+  
     public class Question : INotifyPropertyChanged
     {
         private string _content;

@@ -20,9 +20,11 @@ namespace QuziLab
     /// </summary>
     public partial class UstawieniaTestu : UserControl
     {
-        public UstawieniaTestu()
+        private readonly Quiz _quiz;
+        public UstawieniaTestu(Quiz quiz)
         {
             InitializeComponent();
+            _quiz = quiz;
         }
 
         private void BackBtn_Click(object sender, RoutedEventArgs e)
@@ -40,16 +42,46 @@ namespace QuziLab
 
         private void RozpocznijBtn_Click(object sender, RoutedEventArgs e)
         {
-            // 1. Znajdujemy główne okno aplikacji
-            var mainWindow = Window.GetWindow(this) as MainWindow;
-
-            // 2. Jeśli okno istnieje i ma obszar treści, podmieniamy widok
-            if (mainWindow != null && mainWindow.contentControl != null)
+            if (!int.TryParse(TestTimeInput.Text, out int time) || time <= 0)
             {
-                // 3. Tworzymy nową instancję strony Quizy i ustawiamy ją jako aktualną
-                mainWindow.contentControl.Content = new Test();
+                MessageBox.Show("Podaj poprawny czas testu.");
+                return;
+            }
+
+            if (!int.TryParse(QuestionsCountInput.Text, out int count) || count <= 0)
+            {
+                MessageBox.Show("Podaj poprawną liczbę pytań.");
+                return;
+            }
+
+            if (count > _quiz.Questions.Count)
+            {
+                MessageBox.Show($"Quiz ma tylko {_quiz.Questions.Count} pytań!");
+                return;
+            }
+
+            // 1️⃣ ustawienia
+            TestSettings settings = new TestSettings
+            {
+                TimeMinutes = time,
+                QuestionsCount = count
+            };
+
+            // 2️⃣ losowanie pytań
+            var questions = _quiz.Questions
+                .OrderBy(q => Guid.NewGuid())
+                .Take(settings.QuestionsCount)
+                .ToList();
+
+            // 3️⃣ przejście do Test
+            var mainWindow = Window.GetWindow(this) as MainWindow;
+            if (mainWindow != null)
+            {
+                mainWindow.contentControl.Content =
+                    new Test(questions, settings, _quiz.Title);
             }
         }
+
 
         //przycisk inkrementacji inputa
         public void btn_increment(object sender, RoutedEventArgs e)

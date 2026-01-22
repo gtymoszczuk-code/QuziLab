@@ -49,15 +49,19 @@ namespace QuziLab
                 {
                     string json = File.ReadAllText(file);
                     Quiz quiz = JsonSerializer.Deserialize<Quiz>(json);
+
                     if (quiz != null)
+                    {
+                        quiz.FilePath = file; // ⭐ zapamiętujemy plik
                         LoadedQuizzes.Add(quiz);
+                    }
                 }
                 catch (Exception ex)
                 {
-                    // jeśli plik nie jest poprawnym JSONem
                     Console.WriteLine($"Błąd w pliku {file}: {ex.Message}");
                 }
             }
+
         }
         private void NowyQuiz_Click(object sender, RoutedEventArgs e)
         {
@@ -71,11 +75,57 @@ namespace QuziLab
 
         private void Test_Click(object sender, RoutedEventArgs e)
         {
+            if (QuizListBox.SelectedItem is not Quiz selectedQuiz)
+            {
+                MessageBox.Show("Wybierz quiz z listy!");
+                return;
+            }
+
             var mainWindow = Window.GetWindow(this) as MainWindow;
             if (mainWindow != null)
             {
-                mainWindow.contentControl.Content = new UstawieniaTestu();
+                mainWindow.contentControl.Content =
+                    new UstawieniaTestu(selectedQuiz);
             }
+        }
+
+
+        private void DeleteBT_Click(object sender, RoutedEventArgs e)
+        {
+            if (QuizListBox.SelectedItem is not Quiz selectedQuiz)
+            {
+                MessageBox.Show("Wybierz quiz do usunięcia.");
+                return;
+            }
+
+            var result = MessageBox.Show(
+                $"Czy na pewno chcesz usunąć quiz „{selectedQuiz.Title}”?",
+                "Potwierdzenie",
+                MessageBoxButton.YesNo,
+                MessageBoxImage.Warning);
+
+            if (result != MessageBoxResult.Yes)
+                return;
+
+            try
+            {
+                // usuwamy plik
+                if (File.Exists(selectedQuiz.FilePath))
+                    File.Delete(selectedQuiz.FilePath);
+
+                // usuwamy z listy (ListBox odświeży się sam)
+                LoadedQuizzes.Remove(selectedQuiz);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Błąd przy usuwaniu quizu:\n" + ex.Message);
+            }
+
+        }
+
+        private void NaukaBT_Click(object sender, RoutedEventArgs e)
+        {
+            
         }
     }
 }

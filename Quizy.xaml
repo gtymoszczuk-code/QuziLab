@@ -44,8 +44,8 @@
                             </StackPanel>
 
                             <StackPanel Grid.Column="1" Orientation="Horizontal">
-                                <Button Content="Nauka" Style="{StaticResource RoundedButtonStyle}" Margin="0,0,10,0" Width="80"/>
-                                <Button Content="Test" Click="Test_Click"  Style="{StaticResource RoundedButtonStyle}" Width="80"/>
+                                <Button x:Name="NaukaBT" Content="Nauka" Style="{StaticResource RoundedButtonStyle}" Margin="0,0,10,0" Width="80" Click="NaukaBT_Click"/>
+                                <Button x:Name="TestBT" Content="Test" Click="Test_Click"  Style="{StaticResource RoundedButtonStyle}" Width="80" />
                             </StackPanel>
                         </Grid>
                     </DataTemplate>
@@ -54,11 +54,11 @@
         </Border>
 
         <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="40,10,40,30">
-            <Button Content="Usuń" 
+            <Button x:Name="DeleteBT" Content="Usuń" 
                     Style="{StaticResource RoundedButtonStyle}" 
                     
                     Margin="0,0,10,0"
-                    IsEnabled="{Binding SelectedItem, ElementName=QuizListBox, Converter={StaticResource NullToBoolConverter}}"/>
+                    IsEnabled="{Binding SelectedItem, ElementName=QuizListBox, Converter={StaticResource NullToBoolConverter}}" Click="DeleteBT_Click"/>
 
             <Button Content="Edytuj" 
                     Style="{StaticResource RoundedButtonStyle}" 
