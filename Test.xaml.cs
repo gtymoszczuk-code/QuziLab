@@ -120,7 +120,7 @@ namespace QuziLab
         {
             var q = _questions[_currentIndex];
             QuestionContent.Text = q.Content;
-
+            string[] pytania = ["A", "B", "C", "D", "E"];
             // reset
             foreach (var rb in _radioButtons)
             {
@@ -128,11 +128,11 @@ namespace QuziLab
                 rb.IsChecked = false;
                 rb.Tag = null;
             }
-
+            
             // wypełnianie tylko istniejących odpowiedzi
             for (int i = 0; i < q.Answers.Count && i < 5; i++)
             {
-                _radioButtons[i].Content = q.Answers[i].Content;
+                _radioButtons[i].Content = pytania[i]+". "+q.Answers[i].Content;
                 _radioButtons[i].Tag = q.Answers[i]; // przechowujemy Answer
                 _radioButtons[i].Visibility = Visibility.Visible;
             }
