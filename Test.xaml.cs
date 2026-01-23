@@ -73,6 +73,15 @@ namespace QuziLab
                 _timer.Stop();
                 EndTest();
             }
+
+            if (_timeLeft.TotalSeconds <= 10)
+            {
+                TimerText.Foreground = Brushes.Red;
+            }
+            else
+            {
+                TimerText.Foreground = Brushes.Black;
+            }
         }
 
         private void ZapiszWynik()
@@ -119,6 +128,7 @@ namespace QuziLab
         private void LoadQuestion()
         {
             var q = _questions[_currentIndex];
+            Counter.Text = $"{_currentIndex + 1}/{_questions.Count}";
             QuestionContent.Text = q.Content;
             string[] pytania = ["A", "B", "C", "D", "E"];
             // reset
@@ -135,6 +145,7 @@ namespace QuziLab
                 _radioButtons[i].Content = pytania[i]+". "+q.Answers[i].Content;
                 _radioButtons[i].Tag = q.Answers[i]; // przechowujemy Answer
                 _radioButtons[i].Visibility = Visibility.Visible;
+                
             }
         }
 
