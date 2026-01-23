@@ -25,6 +25,7 @@ namespace QuziLab
         {
             InitializeComponent();
             _quiz = quiz;
+            QuestionsCountInput.Text = _quiz.QuestionsCount.ToString();
         }
 
         private void BackBtn_Click(object sender, RoutedEventArgs e)

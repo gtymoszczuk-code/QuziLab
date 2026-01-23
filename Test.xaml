@@ -14,7 +14,7 @@
         </Grid.RowDefinitions>
 
         <Grid Grid.Row="0" Margin="40,30,40,10">
-            <TextBlock Text="Pytanie 1 / 20" Style="{StaticResource PageTitle}" Margin="0"/>
+            <TextBlock x:Name="Counter" Text="Pytanie 1 / 20" Style="{StaticResource PageTitle}" Margin="0"/>
             <TextBlock x:Name="TimerText" Text="Czas: 00:15 / 20:00" 
                        HorizontalAlignment="Right" VerticalAlignment="Center" 
                        Foreground="#453F73" FontSize="18"/>

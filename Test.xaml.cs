@@ -177,6 +177,7 @@ namespace QuziLab
                 {
                     mainWindow.contentControl.Content = new Quizy();
                 }
+                _timer.Stop();
                 return; // ważne! kończymy metodę
             }
 
