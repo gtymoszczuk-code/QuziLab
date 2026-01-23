@@ -99,7 +99,7 @@ namespace QuziLab
 
             TextBox target = FindControlInParent<TextBox>(parent);
 
-            if (target != null && int.TryParse(target.Text, out int val))
+            if (target != null && int.TryParse(target.Text, out int val) && val < _quiz.QuestionsCount)
             {
                 target.Text = (val + 1).ToString();
             }
@@ -114,7 +114,7 @@ namespace QuziLab
 
             TextBox target = FindControlInParent<TextBox>(parent);
 
-            if (target != null && int.TryParse(target.Text, out int val) && val > 1)
+            if (target != null && int.TryParse(target.Text, out int val) && val > 2)
             {
                 target.Text = (val - 1).ToString();
             }
