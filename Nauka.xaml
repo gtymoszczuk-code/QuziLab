@@ -6,6 +6,7 @@
              xmlns:local="clr-namespace:QuziLab"
              mc:Ignorable="d" 
              d:DesignHeight="500" d:DesignWidth="600">
+    
     <Grid Background="#F5F6FF">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -23,10 +24,11 @@
                    Text="Ile kropek ma biedronka australijska?" 
                    FontSize="16" Foreground="#333" Margin="0,0,0,15" 
                    TextWrapping="Wrap"/>
+            
 
             <Border Style="{StaticResource SettingsBoxStyle}" HorizontalAlignment="Stretch">
                 <StackPanel x:Name="AnswersStack">
-                    <RadioButton x:Name="OdpA" Content="A. 11" Style="{StaticResource ModernRadioButton}" GroupName="Answers"/>
+                    <RadioButton x:Name="OdpA" Content="A. 11" Style="{StaticResource ModernRadioButton}" GroupName="Answers" Cursor="Hand"  />
                     <RadioButton x:Name="OdpB" Content="B. 7" Style="{StaticResource ModernRadioButton}" GroupName="Answers"/>
                     <RadioButton x:Name="OdpC" Content="C. traktor" Style="{StaticResource ModernRadioButton}" GroupName="Answers"/>
                     <RadioButton x:Name="OdpD" Content="D. Nie ma żadnych" Style="{StaticResource ModernRadioButton}" GroupName="Answers"/>
@@ -36,7 +38,7 @@
         </StackPanel>
 
         <Grid Grid.Row="2" Margin="40,0,40,30">
-            <Button Content="Poprzednie" IsEnabled="false" Style="{StaticResource RoundedButtonStyle}" 
+            <Button x:Name="PowrotBT" Content="Poprzednie" IsEnabled="false" Style="{StaticResource RoundedButtonStyle}" 
                 HorizontalAlignment="Left" VerticalAlignment="Center" Width="140" Height="40" Click="Prev_Click"/>
 
             <Button x:Name="Next_Kopiuj" Content="Sprawdź" 
@@ -54,3 +56,5 @@
         </Grid>
     </Grid>
 </UserControl>
+    
+    

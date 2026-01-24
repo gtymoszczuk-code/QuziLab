@@ -127,6 +127,10 @@ namespace QuziLab
 
         private void LoadQuestion()
         {
+            if(_currentIndex+1 == _questions.Count)
+            {
+                Next.Content = "Zakończ Quiz";
+            }
             var q = _questions[_currentIndex];
             Counter.Text = $"{_currentIndex + 1}/{_questions.Count}";
             QuestionContent.Text = q.Content;

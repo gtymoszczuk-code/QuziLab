@@ -118,17 +118,10 @@ namespace QuziLab
 
         private void Nauka_Click(object sender, RoutedEventArgs e)
         {
-            if (QuizListBox.SelectedItem is not Quiz selectedQuiz)
+            if (QuizListBox.SelectedItem is Quiz quiz)
             {
-                MessageBox.Show("Wybierz quiz z listy!");
-                return;
-            }
-
-            var mainWindow = Window.GetWindow(this) as MainWindow;
-            if (mainWindow != null)
-            {
-                mainWindow.contentControl.Content =
-                    new Nauka();
+                var mainWindow = Window.GetWindow(this) as MainWindow;
+                mainWindow.contentControl.Content = new Nauka(quiz);
             }
         }
 
