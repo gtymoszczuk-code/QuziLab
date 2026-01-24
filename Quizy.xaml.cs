@@ -75,12 +75,29 @@ namespace QuziLab
 
         private void EdytujQuiz_Click(object sender, RoutedEventArgs e)
         {
-            // Szukamy głównego okna i podmieniamy zawartość
+            if (QuizListBox.SelectedItem is not Quiz selectedQuiz)
+            {
+                MessageBox.Show("Wybierz quiz do edycji!");
+                return;
+            }
+
+            string projectFolder = Directory.GetParent(AppDomain.CurrentDomain.BaseDirectory).Parent.Parent.FullName;
+
+            string folder = System.IO.Path.Combine(projectFolder, "Quizy");
+            string filePath = System.IO.Path.Combine(folder, $"{selectedQuiz.Title}.json");
+
+            if (!File.Exists(filePath))
+            {
+                MessageBox.Show("Nie znaleziono pliku quizu!");
+                return;
+            }
+
+            string json = File.ReadAllText(filePath);
+            Quiz loadedQuiz = JsonSerializer.Deserialize<Quiz>(json);
+
             var mainWindow = Window.GetWindow(this) as MainWindow;
             if (mainWindow != null)
-            {
-                mainWindow.contentControl.Content = new EdytujQuiz();
-            }
+                mainWindow.contentControl.Content = new EdytujQuiz(loadedQuiz);
         }
 
         private void Test_Click(object sender, RoutedEventArgs e)

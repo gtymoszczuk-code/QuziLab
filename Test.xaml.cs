@@ -151,6 +151,7 @@ namespace QuziLab
 
         private void FinishBtn_Click(object sender, RoutedEventArgs e)
         {
+            _timer.Stop();
             // 1. Znajdujemy główne okno aplikacji
             var mainWindow = Window.GetWindow(this) as MainWindow;
 
@@ -183,12 +184,14 @@ namespace QuziLab
                 // koniec testu
                 //MessageBox.Show($"Koniec testu!\nWynik: {_score} / {_questions.Count}");
                 ZapiszWynik();
+                _timer.Stop();
+
                 var mainWindow = Window.GetWindow(this) as MainWindow;
                 if (mainWindow != null && mainWindow.contentControl != null)
                 {
-                    mainWindow.contentControl.Content = new PodsumowanieTestu(_quizTitle, _score, _questions.Count, _settings.TimeMinutes);
+                    mainWindow.contentControl.Content = new PodsumowanieTestu(_quizTitle, _score, _questions.Count, _timeLeft);
                 }
-                _timer.Stop();
+                
                 return; // ważne! kończymy metodę
             }
 

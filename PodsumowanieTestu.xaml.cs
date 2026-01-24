@@ -20,11 +20,12 @@ namespace QuziLab
     /// </summary>
     public partial class PodsumowanieTestu : UserControl
     {
-        public PodsumowanieTestu(string title, int score, int maxScore, int testTime)
+        public PodsumowanieTestu(string title, int score, int maxScore, TimeSpan testTime)
         {
             InitializeComponent();
 
             QuizTitle.Text = title;
+            FinalTime.Text = testTime.ToString();
             double percent = ((double)score / maxScore) * 100;
             ScoreText.Text = $"{score}/{maxScore} pkt. ({percent:F0}%)";
 

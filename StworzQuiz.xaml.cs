@@ -18,6 +18,8 @@ namespace QuziLab
             DataContext = this; // binding dla ListBox
         }
 
+
+
         public ObservableCollection<Question> Questions { get; set; } = new ObservableCollection<Question>();
 
         private void BackBtn_Click(object sender, RoutedEventArgs e)
@@ -29,8 +31,10 @@ namespace QuziLab
         private void DodajPytanie_Click(object sender, RoutedEventArgs e)
         {
             var mainWindow = Window.GetWindow(this) as MainWindow;
-            mainWindow.contentControl.Content = new DodajPytanie(this);
+
+            mainWindow.contentControl.Content = new DodajPytanie(this, Questions);
         }
+
 
         private void DeleteBT_Click(object sender, RoutedEventArgs e)
         {
@@ -41,16 +45,17 @@ namespace QuziLab
 
         private void EditBT_Click(object sender, RoutedEventArgs e)
         {
-            if (QuestionsListBox.SelectedItem is Question selectedQuestion)
-            {
-                var mainWindow = Window.GetWindow(this) as MainWindow;
-                mainWindow.contentControl.Content = new DodajPytanie(this, selectedQuestion);
-            }
-            else
+            if (QuestionsListBox.SelectedItem is not Question selectedQuestion)
             {
                 MessageBox.Show("Wybierz pytanie do edycji!");
+                return;
             }
+
+            var mainWindow = Window.GetWindow(this) as MainWindow;
+
+            mainWindow.contentControl.Content = new DodajPytanie(this, Questions, selectedQuestion);
         }
+
 
         private void SaveQuiz_Click(object sender, RoutedEventArgs e)
         {
