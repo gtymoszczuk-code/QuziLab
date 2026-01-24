@@ -52,7 +52,10 @@ namespace QuziLab
     {
         public string NazwaQuizu { get; set; }
         public string DataWyniku { get; set; }
-        public string PunktyDisplay { get; set; } 
+        public int PunktyZdobyte { get; set; }
+        public int PunktyMax { get; set; }
+
+        public string PunktyDisplay => $"{PunktyZdobyte}/{PunktyMax}";
     }
 
 

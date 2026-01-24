@@ -34,45 +34,59 @@ namespace QuziLab
         }
         private void LoadResults()
         {
-            string projectFolder = Directory.GetParent(AppDomain.CurrentDomain.BaseDirectory).Parent.Parent.FullName;
-            string resultsFile = System.IO.Path.Combine(projectFolder, "Wyniki.txt");
+            string projectFolder = Directory
+                .GetParent(AppDomain.CurrentDomain.BaseDirectory)
+                .Parent.Parent.FullName;
 
-            if (!File.Exists(resultsFile))
+            string quizFolder = System.IO.Path.Combine(projectFolder, "Quizy");
+            string filePath = System.IO.Path.Combine(quizFolder, "..", "Wyniki.txt");
+
+            if (!File.Exists(filePath))
             {
-                MessageBox.Show("Plik Wyniki.txt nie istnieje!");
+                MessageBox.Show("Brak pliku Wyniki.txt");
                 return;
             }
 
             Results.Clear();
 
-            var lines = File.ReadAllLines(resultsFile);
+            var tempResults = new List<WynikModel>();
 
-            foreach (var line in lines)
+            foreach (var line in File.ReadAllLines(filePath))
             {
-                if (string.IsNullOrWhiteSpace(line)) continue;
+                // NazwaQuizu ; Data ; 4/5
+                var parts = line.Split(';');
+                if (parts.Length < 3)
+                    continue;
 
-                try
+                var scoreParts = parts[2].Split('/');
+                if (scoreParts.Length != 2)
+                    continue;
+
+                if (!int.TryParse(scoreParts[0].Trim(), out int zdobyte))
+                    continue;
+
+                if (!int.TryParse(scoreParts[1].Trim(), out int max))
+                    continue;
+
+                tempResults.Add(new WynikModel
                 {
-                    // spodziewany format: NazwaQuizu ; Data ; PunktyZdobyte/PunktyMax
-                    var parts = line.Split(';');
-                    if (parts.Length >= 3)
-                    {
-                        Results.Add(new WynikModel
-                        {
-                            NazwaQuizu = parts[0].Trim(),
-                            DataWyniku = parts[1].Trim(),
-                            PunktyDisplay = parts[2].Trim()
-                        });
-                    }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show($"Błąd przy parsowaniu linii: {line}, {ex.Message}");
-                }
+                    NazwaQuizu = parts[0].Trim(),
+                    DataWyniku = parts[1].Trim(),
+                    PunktyZdobyte = zdobyte,
+                    PunktyMax = max
+                });
+            }
+
+            foreach (var r in tempResults
+                .OrderByDescending(r => (double)r.PunktyZdobyte / r.PunktyMax)
+                .ThenByDescending(r => r.PunktyMax))
+            {
+                Results.Add(r);
             }
 
             ResultsListBox.ItemsSource = Results;
         }
+
 
 
     }

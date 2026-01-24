@@ -51,9 +51,9 @@
             <Grid>
                 <StackPanel Orientation="Horizontal" >
                     <TextBlock Text="Najnowszy: " FontWeight="Bold" FontSize="14"/>
-                    <TextBlock Text="Nazwa Quizu" FontSize="14" />
+                    <TextBlock x:Name="NazwaNajnowszy" Text="Nazwa Quizu" FontSize="14" />
                 </StackPanel>
-                <TextBlock Text="19/20 pkt. (95%)" HorizontalAlignment="Right" 
+                <TextBlock x:Name="WynikNajnowszy" Text="19/20 pkt. (95%)" HorizontalAlignment="Right" 
                            Foreground="#FF69B4" FontWeight="Bold" FontSize="14"/>
             </Grid>
         </Border>
