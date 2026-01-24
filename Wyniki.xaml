@@ -20,7 +20,7 @@
                 <ListBox x:Name="ResultsListBox"
                          Style="{StaticResource ModernListBox}" Background="Transparent" 
                          Focusable="False" 
-                         IsHitTestVisible="False"
+                         
                          ItemContainerStyle="{StaticResource ModernListBoxItem}"
                          >
 
