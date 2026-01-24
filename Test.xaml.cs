@@ -181,12 +181,12 @@ namespace QuziLab
             if (_currentIndex >= _questions.Count)
             {
                 // koniec testu
-                MessageBox.Show($"Koniec testu!\nWynik: {_score} / {_questions.Count}");
+                //MessageBox.Show($"Koniec testu!\nWynik: {_score} / {_questions.Count}");
                 ZapiszWynik();
                 var mainWindow = Window.GetWindow(this) as MainWindow;
                 if (mainWindow != null && mainWindow.contentControl != null)
                 {
-                    mainWindow.contentControl.Content = new Quizy();
+                    mainWindow.contentControl.Content = new PodsumowanieTestu(_quizTitle, _score, _questions.Count, _settings.TimeMinutes);
                 }
                 _timer.Stop();
                 return; // ważne! kończymy metodę

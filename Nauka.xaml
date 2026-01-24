@@ -1,0 +1,56 @@
+﻿<UserControl x:Class="QuziLab.Nauka"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:QuziLab"
+             mc:Ignorable="d" 
+             d:DesignHeight="500" d:DesignWidth="600">
+    <Grid Background="#F5F6FF">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0" Margin="40,30,40,10">
+            <TextBlock x:Name="Counter" Text="Pytanie 1 / 20" Style="{StaticResource PageTitle}" Margin="0"/>
+            
+        </Grid>
+
+        <StackPanel Grid.Row="1" VerticalAlignment="Center" Margin="40,0">
+            <TextBlock x:Name="QuestionContent" 
+                   Text="Ile kropek ma biedronka australijska?" 
+                   FontSize="16" Foreground="#333" Margin="0,0,0,15" 
+                   TextWrapping="Wrap"/>
+
+            <Border Style="{StaticResource SettingsBoxStyle}" HorizontalAlignment="Stretch">
+                <StackPanel x:Name="AnswersStack">
+                    <RadioButton x:Name="OdpA" Content="A. 11" Style="{StaticResource ModernRadioButton}" GroupName="Answers"/>
+                    <RadioButton x:Name="OdpB" Content="B. 7" Style="{StaticResource ModernRadioButton}" GroupName="Answers"/>
+                    <RadioButton x:Name="OdpC" Content="C. traktor" Style="{StaticResource ModernRadioButton}" GroupName="Answers"/>
+                    <RadioButton x:Name="OdpD" Content="D. Nie ma żadnych" Style="{StaticResource ModernRadioButton}" GroupName="Answers"/>
+                    <RadioButton x:Name="OdpE" Content="E. 8" Style="{StaticResource ModernRadioButton}" GroupName="Answers"/>
+                </StackPanel>
+            </Border>
+        </StackPanel>
+
+        <Grid Grid.Row="2" Margin="40,0,40,30">
+            <Button Content="Poprzednie" IsEnabled="false" Style="{StaticResource RoundedButtonStyle}" 
+                HorizontalAlignment="Left" VerticalAlignment="Center" Width="140" Height="40" Click="Prev_Click"/>
+
+            <Button x:Name="Next_Kopiuj" Content="Sprawdź" 
+            Style="{StaticResource RoundedButtonStyle}" 
+            HorizontalAlignment="Center" 
+            Width="140" Height="40" Click="Check_Click"/>
+
+            <Button x:Name="Next" Content="Następne" 
+             Style="{StaticResource RoundedButtonStyle}" 
+             HorizontalAlignment="Right" 
+             Width="140" Height="40" Click="Next_Click"/>
+
+
+
+        </Grid>
+    </Grid>
+</UserControl>

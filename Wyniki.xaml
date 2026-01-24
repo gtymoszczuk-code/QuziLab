@@ -6,7 +6,56 @@
              xmlns:local="clr-namespace:QuziLab"
              mc:Ignorable="d" 
              d:DesignHeight="500" d:DesignWidth="600">
-    <Grid>
-        <TextBlock Text="Wyniki" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+    <Grid Background="#F5F6FF">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0" Text="Najlepsze wyniki" Style="{StaticResource PageTitle}" Margin="40,30,0,0"/>
+
+        <Grid Grid.Row="1" VerticalAlignment="Center">
+            <Border Style="{StaticResource SettingsBoxStyle}" HorizontalAlignment="Stretch" Padding="0,10,0,10" Margin="40,20">
+                <ListBox x:Name="ResultsListBox" 
+                         Style="{StaticResource ModernListBox}" Background="Transparent" 
+                         Focusable="False" 
+                         IsHitTestVisible="False"
+                         ItemContainerStyle="{StaticResource ModernListBoxItem}"
+                         >
+
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Margin="0,5">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+
+                                <StackPanel Orientation="Horizontal" Grid.Column="0">
+                                    <TextBlock Text="{Binding NazwaQuizu}"  FontSize="14"/>
+                                    <TextBlock Text="{Binding DataWyniku, StringFormat='( {0} )'}" 
+                                                Margin="10,0,0,0" FontSize="14"/>
+                                </StackPanel>
+
+                                <TextBlock Grid.Column="1" Text="{Binding PunktyDisplay}" 
+                                           Foreground="#FF69B4" FontWeight="Bold" FontSize="14"/>
+                            </Grid>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </Border>
+        </Grid>
+
+        <Border Grid.Row="2" Margin="40,0,40,30" Padding="0,15,0,0">
+            <Grid>
+                <StackPanel Orientation="Horizontal" >
+                    <TextBlock Text="Najnowszy: " FontWeight="Bold" FontSize="14"/>
+                    <TextBlock Text="Nazwa Quizu" FontSize="14" />
+                </StackPanel>
+                <TextBlock Text="19/20 pkt. (95%)" HorizontalAlignment="Right" 
+                           Foreground="#FF69B4" FontWeight="Bold" FontSize="14"/>
+            </Grid>
+        </Border>
     </Grid>
 </UserControl>

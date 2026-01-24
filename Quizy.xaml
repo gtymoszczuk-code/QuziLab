@@ -19,6 +19,23 @@
         </Grid.RowDefinitions>
 
         <TextBlock Text="Twoje Quizy" Style="{StaticResource PageTitle}" Margin="40,30,0,10"/>
+        <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,30,40,10">
+            <Button x:Name="DeleteBT" Content="Usuń" 
+            Style="{StaticResource RoundedButtonStyle}" 
+            
+            Margin="0,0,10,0"
+            IsEnabled="{Binding SelectedItem, ElementName=QuizListBox, Converter={StaticResource NullToBoolConverter}}" Click="DeleteBT_Click"/>
+
+            <Button Content="Edytuj" 
+            Style="{StaticResource RoundedButtonStyle}" 
+            Click="EdytujQuiz_Click"
+            Margin="0,0,10,0"
+            IsEnabled="{Binding SelectedItem, ElementName=QuizListBox, Converter={StaticResource NullToBoolConverter}}"/>
+
+            <Button Content="Nowy Quiz" 
+            Style="{StaticResource RoundedButtonStyle}"
+            Click="NowyQuiz_Click" />
+        </StackPanel>
 
         <Border Grid.Row="1" Margin="40,10" CornerRadius="6" BorderThickness="0">
             <ListBox x:Name="QuizListBox" 
@@ -37,38 +54,24 @@
                             </Grid.ColumnDefinitions>
 
                             <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                                <TextBlock Text="{Binding Title}" FontSize="14" VerticalAlignment="Center" />
+                                <TextBlock Text="{Binding Title}"  FontSize="15" VerticalAlignment="Center" />
                                 <TextBlock Text="{Binding QuestionsCount, StringFormat='({0} pytań)'}" 
-                                           Margin="10,0" FontSize="14" VerticalAlignment="Center"
+                                           Margin="10,0" FontSize="15" VerticalAlignment="Center"
                                            Opacity="0.7"/>
                             </StackPanel>
 
                             <StackPanel Grid.Column="1" Orientation="Horizontal">
-                                <Button x:Name="NaukaBT" Content="Nauka" Style="{StaticResource RoundedButtonStyle}" Margin="0,0,10,0" Width="80" Click="NaukaBT_Click"/>
-                                <Button x:Name="TestBT" Content="Test" Click="Test_Click"  Style="{StaticResource RoundedButtonStyle}" Width="80" />
+                                
                             </StackPanel>
                         </Grid>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>
         </Border>
-
         <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="40,10,40,30">
-            <Button x:Name="DeleteBT" Content="Usuń" 
-                    Style="{StaticResource RoundedButtonStyle}" 
-                    
-                    Margin="0,0,10,0"
-                    IsEnabled="{Binding SelectedItem, ElementName=QuizListBox, Converter={StaticResource NullToBoolConverter}}" Click="DeleteBT_Click"/>
-
-            <Button Content="Edytuj" 
-                    Style="{StaticResource RoundedButtonStyle}" 
-                    
-                    Margin="0,0,10,0"
-                    IsEnabled="{Binding SelectedItem, ElementName=QuizListBox, Converter={StaticResource NullToBoolConverter}}"/>
-
-            <Button Content="Nowy Quiz" 
-                    Style="{StaticResource RoundedButtonStyle}"
-                    Click="NowyQuiz_Click" />
+            <Button x:Name="NaukaBT" Content="Nauka" Click="Nauka_Click"  Style="{StaticResource RoundedButtonStyle}" Margin="0,0,10,0"  Width="80" IsEnabled="{Binding SelectedItem, ElementName=QuizListBox, Converter={StaticResource NullToBoolConverter}}"/>
+            <Button x:Name="TestBT" Content="Test" Click="Test_Click"  Style="{StaticResource RoundedButtonStyle}" Width="80" IsEnabled="{Binding SelectedItem, ElementName=QuizListBox, Converter={StaticResource NullToBoolConverter}}" Cursor="Hand"/>
         </StackPanel>
+
     </Grid>
 </UserControl>

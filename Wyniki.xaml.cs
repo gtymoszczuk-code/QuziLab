@@ -21,6 +21,17 @@ namespace QuziLab
         public Wyniki()
         {
             InitializeComponent();
+
+            List<WynikModel> daneTestowe = new List<WynikModel>
+            {
+                new WynikModel { NazwaQuizu = "Historia Polski", DataWyniku = "20.01.2024", ZdobytePunkty = 15, MaxPunkty = 20 },
+                new WynikModel { NazwaQuizu = "Programowanie C#", DataWyniku = "21.01.2024", ZdobytePunkty = 20, MaxPunkty = 20 },
+                new WynikModel { NazwaQuizu = "Bazy Danych", DataWyniku = "22.01.2024", ZdobytePunkty = 12, MaxPunkty = 15 },
+                new WynikModel { NazwaQuizu = "Matematyka Dyskretna", DataWyniku = "23.01.2024", ZdobytePunkty = 8, MaxPunkty = 10 }
+            };
+
+            // PRZYPISANIE DO LISTY
+            ResultsListBox.ItemsSource = daneTestowe;
         }
     }
 }

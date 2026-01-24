@@ -73,6 +73,16 @@ namespace QuziLab
             }
         }
 
+        private void EdytujQuiz_Click(object sender, RoutedEventArgs e)
+        {
+            // Szukamy głównego okna i podmieniamy zawartość
+            var mainWindow = Window.GetWindow(this) as MainWindow;
+            if (mainWindow != null)
+            {
+                mainWindow.contentControl.Content = new EdytujQuiz();
+            }
+        }
+
         private void Test_Click(object sender, RoutedEventArgs e)
         {
             if (QuizListBox.SelectedItem is not Quiz selectedQuiz)
@@ -86,6 +96,22 @@ namespace QuziLab
             {
                 mainWindow.contentControl.Content =
                     new UstawieniaTestu(selectedQuiz);
+            }
+        }
+
+        private void Nauka_Click(object sender, RoutedEventArgs e)
+        {
+            if (QuizListBox.SelectedItem is not Quiz selectedQuiz)
+            {
+                MessageBox.Show("Wybierz quiz z listy!");
+                return;
+            }
+
+            var mainWindow = Window.GetWindow(this) as MainWindow;
+            if (mainWindow != null)
+            {
+                mainWindow.contentControl.Content =
+                    new Nauka();
             }
         }
 
@@ -123,10 +149,7 @@ namespace QuziLab
 
         }
 
-        private void NaukaBT_Click(object sender, RoutedEventArgs e)
-        {
-            
-        }
+      
     }
 }
 
