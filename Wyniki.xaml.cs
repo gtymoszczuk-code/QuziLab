@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,20 +20,61 @@ namespace QuziLab
 
     public partial class Wyniki : UserControl
     {
+        private ObservableCollection<WynikModel> Results { get; set; } = new ObservableCollection<WynikModel>();
+
+
         public Wyniki()
         {
             InitializeComponent();
+            DataContext = this;
 
-            List<WynikModel> daneTestowe = new List<WynikModel>
-            {
-                new WynikModel { NazwaQuizu = "Historia Polski", DataWyniku = "20.01.2024", ZdobytePunkty = 15, MaxPunkty = 20 },
-                new WynikModel { NazwaQuizu = "Programowanie C#", DataWyniku = "21.01.2024", ZdobytePunkty = 20, MaxPunkty = 20 },
-                new WynikModel { NazwaQuizu = "Bazy Danych", DataWyniku = "22.01.2024", ZdobytePunkty = 12, MaxPunkty = 15 },
-                new WynikModel { NazwaQuizu = "Matematyka Dyskretna", DataWyniku = "23.01.2024", ZdobytePunkty = 8, MaxPunkty = 10 }
-            };
+            LoadResults();
 
-            // PRZYPISANIE DO LISTY
-            ResultsListBox.ItemsSource = daneTestowe;
+
         }
+        private void LoadResults()
+        {
+            string projectFolder = Directory.GetParent(AppDomain.CurrentDomain.BaseDirectory).Parent.Parent.FullName;
+            string resultsFile = System.IO.Path.Combine(projectFolder, "Wyniki.txt");
+
+            if (!File.Exists(resultsFile))
+            {
+                MessageBox.Show("Plik Wyniki.txt nie istnieje!");
+                return;
+            }
+
+            Results.Clear();
+
+            var lines = File.ReadAllLines(resultsFile);
+
+            foreach (var line in lines)
+            {
+                if (string.IsNullOrWhiteSpace(line)) continue;
+
+                try
+                {
+                    // spodziewany format: NazwaQuizu ; Data ; PunktyZdobyte/PunktyMax
+                    var parts = line.Split(';');
+                    if (parts.Length >= 3)
+                    {
+                        Results.Add(new WynikModel
+                        {
+                            NazwaQuizu = parts[0].Trim(),
+                            DataWyniku = parts[1].Trim(),
+                            PunktyDisplay = parts[2].Trim()
+                        });
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Błąd przy parsowaniu linii: {line}, {ex.Message}");
+                }
+            }
+
+            ResultsListBox.ItemsSource = Results;
+        }
+
+
     }
 }
+

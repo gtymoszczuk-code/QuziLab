@@ -52,13 +52,9 @@ namespace QuziLab
     {
         public string NazwaQuizu { get; set; }
         public string DataWyniku { get; set; }
-        public int ZdobytePunkty { get; set; }
-        public int MaxPunkty { get; set; }
-        public int Procent => (int)((double)ZdobytePunkty / MaxPunkty * 100);
-
-        // To bindowane jest do prawej strony ListBoxa
-        public string PunktyDisplay => $"{ZdobytePunkty}/{MaxPunkty} pkt. ({Procent}%)";
+        public string PunktyDisplay { get; set; } 
     }
+
 
 
     public class NullToBoolConverter : IValueConverter
