@@ -6,7 +6,54 @@
              xmlns:local="clr-namespace:QuziLab"
              mc:Ignorable="d" 
              d:DesignHeight="500" d:DesignWidth="600">
-    <Grid>
-        <TextBlock Text="O aplikacji" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+    <Grid Background="#F5F6FF">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0" Text="O aplikacji" Style="{StaticResource PageTitle}" Margin="40,30,0,10"/>
+
+        <StackPanel Grid.Row="1" VerticalAlignment="Center" Margin="40,0">
+            <Border Style="{StaticResource SettingsBoxStyle}" HorizontalAlignment="Stretch">
+                <StackPanel>
+                    <TextBlock Text="Quizlab - Twój asystent nauki" 
+                               FontSize="20" FontWeight="Bold" Foreground="#4B40F6" Margin="0,0,0,15"/>
+
+                    <TextBlock Text="Aplikacja Quizlab została stworzona, aby ułatwić proces przyswajania wiedzy poprzez interaktywne quizy. Program umożliwia tworzenie własnych zestawów pytań, importowanie ich z plików tekstowych oraz sprawdzanie swojej wiedzy w trybie nauki i testu. Autorzy to dwoje studentów Akademii Bialskiej - Dominika Nieścioru, oraz Grzegorz Tymoszczuk" 
+                               FontSize="16" Foreground="#333" 
+                               TextWrapping="Wrap" 
+                               LineHeight="24"/>
+
+                    <TextBlock Text="Funkcje:" FontSize="18" FontWeight="Medium" Foreground="#453F73" Margin="0,20,0,10"/>
+
+                    <BulletDecorator Margin="10,0,0,0">
+                        <BulletDecorator.Bullet>
+                            <Ellipse Width="6" Height="6" Fill="#4B40F6" VerticalAlignment="Center"/>
+                        </BulletDecorator.Bullet>
+                        <TextBlock Text=" Tworzenie i edycja quizów (JSON)" Margin="10,0,0,5" FontSize="15" Foreground="#444"/>
+                    </BulletDecorator>
+
+                    <BulletDecorator Margin="10,0,0,0">
+                        <BulletDecorator.Bullet>
+                            <Ellipse Width="6" Height="6" Fill="#4B40F6"/>
+                        </BulletDecorator.Bullet>
+                        <TextBlock Text=" Import/Eksport do formatu TXT" Margin="10,0,0,5" FontSize="15" Foreground="#444"/>
+                    </BulletDecorator>
+
+                    <BulletDecorator Margin="10,0,0,0">
+                        <BulletDecorator.Bullet>
+                            <Ellipse Width="6" Height="6" Fill="#4B40F6"/>
+                        </BulletDecorator.Bullet>
+                        <TextBlock Text=" Tryb nauki z natychmiastową informacją zwrotną" Margin="10,0,0,5" FontSize="15" Foreground="#444"/>
+                    </BulletDecorator>
+                </StackPanel>
+            </Border>
+        </StackPanel>
+
+        <TextBlock Grid.Row="2" Text="Wersja 1.0.0 | © 2026 Quizlab Team" 
+                   HorizontalAlignment="Center" Margin="0,0,0,30" 
+                   Foreground="#888" FontSize="12"/>
     </Grid>
 </UserControl>
