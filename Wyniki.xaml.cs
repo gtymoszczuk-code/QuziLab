@@ -50,10 +50,11 @@ namespace QuziLab
             Results.Clear();
 
             var tempResults = new List<WynikModel>();
+            WynikModel newestResult = null; 
 
             foreach (var line in File.ReadAllLines(filePath))
             {
-                // NazwaQuizu ; Data ; 4/5
+                // format: NazwaQuizu ; Data ; 4/5
                 var parts = line.Split(';');
                 if (parts.Length < 3)
                     continue;
@@ -68,13 +69,22 @@ namespace QuziLab
                 if (!int.TryParse(scoreParts[1].Trim(), out int max))
                     continue;
 
-                tempResults.Add(new WynikModel
+                var wynik = new WynikModel
                 {
                     NazwaQuizu = parts[0].Trim(),
                     DataWyniku = parts[1].Trim(),
                     PunktyZdobyte = zdobyte,
                     PunktyMax = max
-                });
+                };
+
+                tempResults.Add(wynik);
+                newestResult = wynik; 
+            }
+
+            if (newestResult != null)
+            {
+                NazwaNajnowszy.Text = newestResult.NazwaQuizu;
+                WynikNajnowszy.Text = newestResult.PunktyDisplay;
             }
 
             foreach (var r in tempResults
@@ -86,6 +96,7 @@ namespace QuziLab
 
             ResultsListBox.ItemsSource = Results;
         }
+
 
 
 
