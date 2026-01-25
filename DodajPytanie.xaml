@@ -57,10 +57,7 @@
                              x:Name="PoprawnaInput" HorizontalContentAlignment="Center"/>
 
                     <StackPanel Grid.Column="2" Orientation="Horizontal">
-                        <Button Content="Usuń odp." Style="{StaticResource RoundedButtonStyle}" 
-                                Margin="10,5,0,5"/>
-                        <Button Content="Dodaj odp." Style="{StaticResource RoundedButtonStyle}" 
-                               IsEnabled="False" Margin="10,5,0,5" />
+                       
                     </StackPanel>
                 </Grid>
             </Grid>
