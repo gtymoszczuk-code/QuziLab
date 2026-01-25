@@ -122,12 +122,13 @@ namespace QuziLab
                 .FirstOrDefault(r => r.Tag is Answer a && a.IsCorrect);
 
 
-
-            if (selected != correctRadio)
+            if (selected != correctRadio && selected.Tag != "Correct")
                 selected.Tag = "Wrong";
 
             if (selected == correctRadio)
                 selected.Tag = "Correct";
+
+            
 
         }
 
