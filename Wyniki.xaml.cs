@@ -83,8 +83,10 @@ namespace QuziLab
 
             if (newestResult != null)
             {
+                double percent = (double)newestResult.PunktyZdobyte/ newestResult.PunktyMax * 100;
                 NazwaNajnowszy.Text = newestResult.NazwaQuizu;
-                WynikNajnowszy.Text = newestResult.PunktyDisplay;
+                WynikNajnowszy.Text = $"{newestResult.PunktyDisplay} ({percent:0}% )";
+
             }
 
             foreach (var r in tempResults
