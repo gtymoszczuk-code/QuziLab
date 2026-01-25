@@ -69,5 +69,17 @@ namespace QuziLab
             => throw new NotImplementedException();
     }
 
-   
+    // klasa pomocnicza do wyświetlania messageboxa
+    public static class Alert
+    {
+        public static void Show(string message)
+        {
+            if (Application.Current.MainWindow is MainWindow main)
+            {
+                main.ShowCustomMessage(message);
+            }
+        }
+    }
+
+
 }

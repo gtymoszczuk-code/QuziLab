@@ -25,6 +25,19 @@
            
             
         </Style>
+        
+        <!-- styl messagebox -->
+        <Style x:Key="MessageBoxBorderStyle" TargetType="Border">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="BorderBrush" Value="#4B40F6"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="CornerRadius" Value="10"/>
+            <Setter Property="Effect">
+                <Setter.Value>
+                    <DropShadowEffect BlurRadius="15" Direction="270" ShadowDepth="2" Opacity="0.2"/>
+                </Setter.Value>
+            </Setter>
+        </Style>
 
         <!-- Styl tytułu strony -->
 
@@ -108,6 +121,46 @@
                 </Setter.Value>
             </Setter>
         </Style>
+
+        <!-- Styl button cta small-->
+
+        <Style x:Key="ctaSButton" TargetType="Button">
+            <Setter Property="Background" Value="#4230F2" />
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="FontSize" Value="16" />
+            <Setter Property="Height" Value="36" />
+            <Setter Property="Padding" Value="40,0,40,2" />
+            <Setter Property="Cursor" Value="Hand" />
+            <Setter Property="SnapsToDevicePixels" Value="True" />
+            <Setter Property="BorderThickness" Value="0" />
+
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="border" 
+                 Background="{TemplateBinding Background}" 
+                 CornerRadius="19" 
+                 BorderThickness="{TemplateBinding BorderThickness}"
+                 Padding="{TemplateBinding Padding}">
+
+                            <ContentPresenter HorizontalAlignment="Center" 
+                               VerticalAlignment="Center" />
+                        </Border>
+
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="border" Property="Background" Value="#5053FF" />
+                            </Trigger>
+
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter TargetName="border" Property="Background" Value="#3122C2" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
 
         <!-- RoundedButton styl-->
         
@@ -298,6 +351,7 @@
             <Setter Property="Foreground" Value="#333"/>
             <Setter Property="Margin" Value="0,8"/>
             <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="RadioButton">
@@ -314,7 +368,29 @@
                                         <Ellipse x:Name="Dot" Fill="#4B40F6" Margin="5" Visibility="Collapsed"/>
                                     </Grid>
                                 </BulletDecorator.Bullet>
-                                <ContentPresenter Margin="10,0,0,0" VerticalAlignment="Center"/>
+
+                                <Grid Margin="10,0,10,0">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <ContentPresenter Grid.Column="0" VerticalAlignment="Center"/>
+
+                                    <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center">
+                                        <TextBlock x:Name="CorrectText" 
+                                           Text="poprawna" 
+                                           Foreground="#38DAAC" 
+                                           FontWeight="Bold" 
+                                           Visibility="Collapsed"/>
+
+                                        <TextBlock x:Name="WrongText" 
+                                           Text="błędna" 
+                                           Foreground="#C24092" 
+                                           FontWeight="Bold" 
+                                           Visibility="Collapsed"/>
+                                    </StackPanel>
+                                </Grid>
                             </BulletDecorator>
                         </Border>
 
@@ -329,6 +405,7 @@
                                 <Setter TargetName="OuterBorder" Property="Background" Value="#11E0FFF0"/>
                                 <Setter TargetName="OuterBorder" Property="Padding" Value="5"/>
                                 <Setter TargetName="OuterBorder" Property="Margin" Value="-5,-5,0,-5"/>
+                                <Setter TargetName="CorrectText" Property="Visibility" Value="Visible"/>
                             </Trigger>
 
                             <Trigger Property="Tag" Value="Wrong">
@@ -336,6 +413,7 @@
                                 <Setter TargetName="OuterBorder" Property="Background" Value="#11FFEBF5"/>
                                 <Setter TargetName="OuterBorder" Property="Padding" Value="5"/>
                                 <Setter TargetName="OuterBorder" Property="Margin" Value="-5,-5,0,-5"/>
+                                <Setter TargetName="WrongText" Property="Visibility" Value="Visible"/>
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>

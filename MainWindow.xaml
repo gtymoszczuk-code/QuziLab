@@ -47,10 +47,38 @@
                 </StackPanel>
             </DockPanel>
         </Border>
-        <ContentControl Grid.Column="1" x:Name="contentControl" Foreground="#453F73"  Background="#EEEEFF">
+        <Grid Grid.Column="1">
+            <ContentControl x:Name="contentControl" Foreground="#453F73" Background="#EEEEFF"/>
 
+            <Grid x:Name="CustomMessageBoxOverlay" Visibility="Collapsed" Panel.ZIndex="1000">
+                <Border Background="#22000000" MouseDown="Block_Click" />
 
-        </ContentControl>
+                <Border Style="{StaticResource MessageBoxBorderStyle}" 
+                    Width="450" Height="250" 
+                    VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <Grid Margin="30">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <TextBlock x:Name="MessageBoxText" 
+                               TextWrapping="Wrap" 
+                               TextAlignment="Center" 
+                               VerticalAlignment="Center" 
+                               FontSize="16" Foreground="#333"/>
+
+                        <Button Grid.Row="1" 
+                            Content="Kontynuuj" 
+                            Style="{StaticResource ctaSButton}" 
+                            HorizontalAlignment="Center" 
+                            Width="160"
+                            Click="CloseMessageBox_Click"/>
+                    </Grid>
+                </Border>
+            </Grid>
+        </Grid>
+
 
     </Grid>
 </Window>

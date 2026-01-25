@@ -20,6 +20,34 @@ namespace QuziLab
             ChangePage(new Start()); // Aplikacja zacznie od strony Start
         }
 
+
+        //customowy messagebox -----------------------------------------
+
+        // Funkcja wywołująca
+        public void ShowCustomMessage(string message)
+        {
+            MessageBoxText.Text = message;
+            CustomMessageBoxOverlay.Visibility = Visibility.Visible;
+
+            // Blokada interakcji z tłem
+            contentControl.IsEnabled = false;
+        }
+
+        // Funkcja zamykająca
+        private void CloseMessageBox_Click(object sender, RoutedEventArgs e)
+        {
+            CustomMessageBoxOverlay.Visibility = Visibility.Collapsed;
+            contentControl.IsEnabled = true;
+        }
+
+        // Blokada kliknięć "przez" tło
+        private void Block_Click(object sender, MouseButtonEventArgs e)
+        {
+            e.Handled = true;
+        }
+        // -------------------------------------------------------------
+
+
         private void ChangePage(UserControl newPage)
         {
             contentControl.Content = newPage;

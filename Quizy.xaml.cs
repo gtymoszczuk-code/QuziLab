@@ -77,7 +77,7 @@ namespace QuziLab
         {
             if (QuizListBox.SelectedItem is not Quiz selectedQuiz)
             {
-                MessageBox.Show("Wybierz quiz do edycji!");
+                Alert.Show("Wybierz quiz do edycji!");
                 return;
             }
 
@@ -88,7 +88,7 @@ namespace QuziLab
 
             if (!File.Exists(filePath))
             {
-                MessageBox.Show("Nie znaleziono pliku quizu!");
+                Alert.Show("Nie znaleziono pliku quizu!");
                 return;
             }
 
@@ -104,7 +104,7 @@ namespace QuziLab
         {
             if (QuizListBox.SelectedItem is not Quiz selectedQuiz)
             {
-                MessageBox.Show("Wybierz quiz z listy!");
+                Alert.Show("Wybierz quiz z listy!");
                 return;
             }
 
@@ -130,7 +130,7 @@ namespace QuziLab
         {
             if (QuizListBox.SelectedItem is not Quiz selectedQuiz)
             {
-                MessageBox.Show("Wybierz quiz do usunięcia.");
+                Alert.Show("Wybierz quiz do usunięcia.");
                 return;
             }
 
@@ -154,7 +154,7 @@ namespace QuziLab
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Błąd przy usuwaniu quizu:\n" + ex.Message);
+                Alert.Show("Błąd przy usuwaniu quizu:\n" + ex.Message);
             }
 
         }

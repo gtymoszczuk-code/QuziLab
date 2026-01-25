@@ -88,7 +88,7 @@ namespace QuziLab
         {
             if (_index == _questions.Count - 1)
             {
-                MessageBox.Show("Koniec quizu! Wracamy do listy quizów.");
+                Alert.Show("Ukończono naukę. Wracasz do Quizów");
 
                 var mainWindow = Window.GetWindow(this) as MainWindow;
                 if (mainWindow != null)
@@ -113,7 +113,7 @@ namespace QuziLab
             var selected = _radioButtons.FirstOrDefault(r => r.IsChecked == true);
             if (selected == null)
             {
-                MessageBox.Show("Wybierz odpowiedź!");
+                Alert.Show("Wybierz odpowiedź!");
                 return;
             }
             

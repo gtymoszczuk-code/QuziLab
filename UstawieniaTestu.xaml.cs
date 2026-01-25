@@ -45,19 +45,19 @@ namespace QuziLab
         {
             if (!int.TryParse(TestTimeInput.Text, out int time) || time <= 0)
             {
-                MessageBox.Show("Podaj poprawny czas testu.");
+                Alert.Show("Podaj poprawny czas testu.");
                 return;
             }
 
             if (!int.TryParse(QuestionsCountInput.Text, out int count) || count <= 0)
             {
-                MessageBox.Show("Podaj poprawną liczbę pytań.");
+                Alert.Show("Podaj poprawną liczbę pytań.");
                 return;
             }
 
             if (count > _quiz.Questions.Count)
             {
-                MessageBox.Show($"Quiz ma tylko {_quiz.Questions.Count} pytań!");
+                Alert.Show($"Quiz ma tylko {_quiz.Questions.Count} pytań!");
                 return;
             }
 

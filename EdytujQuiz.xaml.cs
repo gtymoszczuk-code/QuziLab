@@ -69,7 +69,7 @@ namespace QuziLab
         {
             if (QuestionsListBox.SelectedItem is not Question selectedQuestion)
             {
-                MessageBox.Show("Wybierz pytanie do edycji!");
+                Alert.Show("Wybierz pytanie do edycji!");
                 return;
             }
 
@@ -84,13 +84,13 @@ namespace QuziLab
 
             if (string.IsNullOrWhiteSpace(quizName))
             {
-                MessageBox.Show("Podaj nazwę quizu!");
+                Alert.Show("Podaj nazwę quizu!");
                 return;
             }
 
             if (Questions.Count == 0)
             {
-                MessageBox.Show("Quiz musi zawierać przynajmniej jedno pytanie!");
+                Alert.Show("Quiz musi zawierać przynajmniej jedno pytanie!");
                 return;
             }
 
@@ -119,7 +119,7 @@ namespace QuziLab
                 string json = JsonSerializer.Serialize(_quiz, options);
                 File.WriteAllText(filePath, json);
 
-                MessageBox.Show($"Quiz zapisany do pliku {filePath}");
+                Alert.Show($"Quiz zapisany do pliku {filePath}");
 
                 // 3️⃣ Wracamy do listy quizów
                 var mainWindow = Window.GetWindow(this) as MainWindow;
@@ -128,11 +128,11 @@ namespace QuziLab
             }
             catch (UnauthorizedAccessException)
             {
-                MessageBox.Show("Brak uprawnień do zapisu w tym katalogu. Spróbuj zmienić folder zapisu lub uruchom aplikację jako administrator.");
+                Alert.Show("Brak uprawnień do zapisu w tym katalogu. Spróbuj zmienić folder zapisu lub uruchom aplikację jako administrator.");
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Wystąpił błąd podczas zapisu: {ex.Message}");
+                Alert.Show($"Wystąpił błąd podczas zapisu: {ex.Message}");
             }
         }
 

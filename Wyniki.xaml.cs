@@ -43,7 +43,7 @@ namespace QuziLab
 
             if (!File.Exists(filePath))
             {
-                MessageBox.Show("Brak pliku Wyniki.txt");
+                Alert.Show("Brak pliku Wyniki.txt");
                 return;
             }
 

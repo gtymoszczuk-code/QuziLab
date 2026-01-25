@@ -15,7 +15,8 @@
         </Grid.RowDefinitions>
 
         <Grid Grid.Row="0" Margin="40,30,40,10">
-            <TextBlock x:Name="Counter" Text="Pytanie 1 / 20" Style="{StaticResource PageTitle}" Margin="0"/>
+            <TextBlock Text="Pytanie " Style="{StaticResource PageTitle}" Margin="0,0,0,0"/>
+            <TextBlock x:Name="Counter" Text="1 / 20" Style="{StaticResource PageTitle}" Margin="80,0,0,0"/>
             
         </Grid>
 

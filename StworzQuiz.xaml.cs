@@ -47,7 +47,7 @@ namespace QuziLab
         {
             if (QuestionsListBox.SelectedItem is not Question selectedQuestion)
             {
-                MessageBox.Show("Wybierz pytanie do edycji!");
+                Alert.Show("Wybierz pytanie do edycji!");
                 return;
             }
 
@@ -62,13 +62,13 @@ namespace QuziLab
             string quizName = QuizTitleInput.Text.Trim();
             if (string.IsNullOrWhiteSpace(quizName))
             {
-                MessageBox.Show("Podaj nazwę quizu!");
+                Alert.Show("Podaj nazwę quizu!");
                 return;
             }
 
             if (Questions.Count == 0)
             {
-                MessageBox.Show("Quiz musi zawierać przynajmniej jedno pytanie!");
+                Alert.Show("Quiz musi zawierać przynajmniej jedno pytanie!");
                 return;
             }
 
@@ -94,7 +94,7 @@ namespace QuziLab
             string json = JsonSerializer.Serialize(quiz, options);
             File.WriteAllText(filePath, json);
 
-            MessageBox.Show($"Quiz zapisany do pliku {filePath}");
+            Alert.Show($"Quiz zapisany do pliku {filePath}");
 
             var mainWindow = Window.GetWindow(this) as MainWindow;
             if (mainWindow != null)

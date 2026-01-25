@@ -105,7 +105,7 @@ namespace QuziLab
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Błąd podczas zapisu wyniku: {ex.Message}");
+                Alert.Show($"Błąd podczas zapisu wyniku: {ex.Message}");
             }
         }
         private void EndTest()
@@ -113,7 +113,7 @@ namespace QuziLab
             _timer.Stop();
             ZapiszWynik();
 
-            MessageBox.Show($"⏰ Czas minął!\nTwój wynik: {_score} / {_questions.Count}");
+            Alert.Show($"⏰ Czas minął!\nTwój wynik: {_score} / {_questions.Count}");
 
             var mainWindow = Window.GetWindow(this) as MainWindow;
             if (mainWindow != null && mainWindow.contentControl != null)
@@ -173,7 +173,7 @@ namespace QuziLab
 
             if (selected == null)
             {
-                MessageBox.Show("Wybierz odpowiedź!");
+                Alert.Show("Wybierz odpowiedź!");
                 return;
             }
 
@@ -186,7 +186,7 @@ namespace QuziLab
             if (_currentIndex >= _questions.Count)
             {
                 // koniec testu
-                //MessageBox.Show($"Koniec testu!\nWynik: {_score} / {_questions.Count}");
+                //Alert.Show($"Koniec testu!\nWynik: {_score} / {_questions.Count}");
                 ZapiszWynik();
                 _timer.Stop();
 

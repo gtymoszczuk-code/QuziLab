@@ -73,7 +73,7 @@ namespace QuziLab
 
             if (answers.Count < 2)
             {
-                MessageBox.Show("Podaj minimum 2 odpowiedzi.");
+                Alert.Show("Podaj minimum 2 odpowiedzi.");
                 return;
             }
 
@@ -82,7 +82,7 @@ namespace QuziLab
 
             if (correctIndex < 0 || correctIndex >= answers.Count)
             {
-                MessageBox.Show("Poprawna odpowiedź musi wskazywać istniejącą literę (a–e).");
+                Alert.Show("Poprawna odpowiedź musi wskazywać istniejącą literę (a–e).");
                 return;
             }
 
