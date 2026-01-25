@@ -67,7 +67,7 @@ namespace QuziLab
 
             if (_index == _questions.Count - 1)
             {
-                Next.Content = "Zakończ Quiz";
+                Next.Content = "Zakończ nauke";
             }
             else
             {
@@ -88,7 +88,7 @@ namespace QuziLab
         {
             if (_index == _questions.Count - 1)
             {
-                MessageBox.Show("Koniec quizu! Wracamy do listy quizów.");
+                //MessageBox.Show("Koniec quizu! Wracamy do listy quizów.");
 
                 var mainWindow = Window.GetWindow(this) as MainWindow;
                 if (mainWindow != null)
@@ -122,12 +122,13 @@ namespace QuziLab
                 .FirstOrDefault(r => r.Tag is Answer a && a.IsCorrect);
 
 
-
-            if (selected != correctRadio)
+            if (selected != correctRadio && selected.Tag != "Correct")
                 selected.Tag = "Wrong";
 
             if (selected == correctRadio)
                 selected.Tag = "Correct";
+
+            
 
         }
 
