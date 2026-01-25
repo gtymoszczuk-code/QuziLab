@@ -80,9 +80,9 @@ namespace QuziLab
 
         private void SaveQuiz_Click(object sender, RoutedEventArgs e)
         {
-            string quizName = QuizTitleInput.Text.Trim();
+            string newQuizName = QuizTitleInput.Text?.Trim();
 
-            if (string.IsNullOrWhiteSpace(quizName))
+            if (string.IsNullOrWhiteSpace(newQuizName))
             {
                 Alert.Show("Podaj nazwę quizu!");
                 return;
@@ -94,47 +94,57 @@ namespace QuziLab
                 return;
             }
 
-            // Aktualizujemy obiekt quizu
-            _quiz.Title = quizName;
-            _quiz.Questions = Questions.ToList();
-            _quiz.QuestionsCount = Questions.Count;
+            // 📌 zapamiętujemy STARĄ nazwę (przed edycją)
+            string oldQuizName = _quiz.Title;
 
-            // Folder Quizy w katalogu projektu (lub w Documents, jeśli wolisz bezpiecznie)
-            string projectFolder = Directory.GetParent(AppDomain.CurrentDomain.BaseDirectory).Parent.Parent.FullName;
+            string projectFolder = Directory
+                .GetParent(AppDomain.CurrentDomain.BaseDirectory)
+                .Parent.Parent.FullName;
+
             string folder = System.IO.Path.Combine(projectFolder, "Quizy");
 
             if (!Directory.Exists(folder))
                 Directory.CreateDirectory(folder);
 
-            string filePath = System.IO.Path.Combine(folder, quizName + ".json");
+            string oldFilePath = System.IO.Path.Combine(folder, oldQuizName + ".json");
+            string newFilePath = System.IO.Path.Combine(folder, newQuizName + ".json");
 
             try
             {
-                // 1️⃣ Usuwamy stary plik (jeżeli istnieje)
-                if (File.Exists(filePath))
-                    File.Delete(filePath);
+                // 1️⃣ usuwamy STARY plik (jeśli istnieje)
+                if (File.Exists(oldFilePath))
+                    File.Delete(oldFilePath);
 
-                // 2️⃣ Zapisujemy nowy plik
+                // 2️⃣ tworzymy NOWY obiekt quizu
+                Quiz newQuiz = new Quiz
+                {
+                    Title = newQuizName,
+                    Questions = Questions.ToList(),
+                    QuestionsCount = Questions.Count
+                };
+
+                // 3️⃣ zapisujemy NOWY plik
                 var options = new JsonSerializerOptions { WriteIndented = true };
-                string json = JsonSerializer.Serialize(_quiz, options);
-                File.WriteAllText(filePath, json);
+                string json = JsonSerializer.Serialize(newQuiz, options);
+                File.WriteAllText(newFilePath, json);
 
-                Alert.Show($"Quiz zapisany do pliku {filePath}");
+                Alert.Show("Quiz zapisany!");
 
-                // 3️⃣ Wracamy do listy quizów
+                // 4️⃣ wracamy do listy quizów
                 var mainWindow = Window.GetWindow(this) as MainWindow;
                 if (mainWindow != null)
                     mainWindow.contentControl.Content = new Quizy();
             }
             catch (UnauthorizedAccessException)
             {
-                Alert.Show("Brak uprawnień do zapisu w tym katalogu. Spróbuj zmienić folder zapisu lub uruchom aplikację jako administrator.");
+                Alert.Show("Brak uprawnień do zapisu pliku.");
             }
             catch (Exception ex)
             {
-                Alert.Show($"Wystąpił błąd podczas zapisu: {ex.Message}");
+                Alert.Show($"Błąd zapisu: {ex.Message}");
             }
         }
+
 
     }
 }
