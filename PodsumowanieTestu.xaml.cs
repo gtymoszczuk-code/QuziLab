@@ -20,9 +20,15 @@ namespace QuziLab
     /// </summary>
     public partial class PodsumowanieTestu : UserControl
     {
-        public PodsumowanieTestu(string title, int score, int maxScore, TimeSpan testTime)
+        private readonly List<Question> _questions;
+        private readonly TestSettings _settings;
+        private readonly string _quizTitle;
+        public PodsumowanieTestu(string title, int score, int maxScore, TimeSpan testTime, List<Question> questions, TestSettings settings, string quizTitle)
         {
             InitializeComponent();
+            _questions = questions;
+            _settings = settings;
+            _quizTitle = quizTitle;
 
             QuizTitle.Text = title;
             FinalTime.Text = testTime.ToString();
@@ -42,7 +48,7 @@ namespace QuziLab
             var mainWindow = Window.GetWindow(this) as MainWindow;
             if (mainWindow != null)
             {
-                mainWindow.contentControl.Content = new Quizy();
+                mainWindow.contentControl.Content = new Test(_questions, _settings, _quizTitle);
             }
         }
 

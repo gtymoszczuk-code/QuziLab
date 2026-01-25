@@ -193,7 +193,7 @@ namespace QuziLab
                 var mainWindow = Window.GetWindow(this) as MainWindow;
                 if (mainWindow != null && mainWindow.contentControl != null)
                 {
-                    mainWindow.contentControl.Content = new PodsumowanieTestu(_quizTitle, _score, _questions.Count, _timeLeft);
+                    mainWindow.contentControl.Content = new PodsumowanieTestu(_quizTitle, _score, _questions.Count, _timeLeft, _questions, _settings, _quizTitle);
                 }
                 
                 return; // ważne! kończymy metodę
