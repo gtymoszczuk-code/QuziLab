@@ -67,7 +67,7 @@ namespace QuziLab
 
             if (_index == _questions.Count - 1)
             {
-                Next.Content = "Zakończ Quiz";
+                Next.Content = "Zakończ nauke";
             }
             else
             {
