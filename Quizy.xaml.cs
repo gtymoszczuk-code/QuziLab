@@ -125,6 +125,143 @@ namespace QuziLab
             }
         }
 
+        private void Export_Click(object sender, RoutedEventArgs e)
+        {
+            if (QuizListBox.SelectedItem is not Quiz selectedQuiz)
+            {
+                Alert.Show("Wybierz quiz z listy do eksportu!");
+                return;
+            }
+
+            Microsoft.Win32.SaveFileDialog saveFileDialog = new Microsoft.Win32.SaveFileDialog();
+            saveFileDialog.Filter = "Plik tekstowy (*.txt)|*.txt";
+            saveFileDialog.Title = "Eksportuj quiz (Format Web)";
+            saveFileDialog.FileName = $"{selectedQuiz.Title}.txt";
+
+            if (saveFileDialog.ShowDialog() == true)
+            {
+                try
+                {
+                    StringBuilder sb = new StringBuilder();
+
+                    foreach (var q in selectedQuiz.Questions)
+                    {
+                        sb.AppendLine(q.Content); // 1. linia: Pytanie
+
+                        char correctLetter = 'A';
+
+                        for (int i = 0; i < q.Answers.Count; i++)
+                        {
+                            // Wypisujemy czystą treść odpowiedzi (bez "A. ")
+                            sb.AppendLine(q.Answers[i].Content);
+
+                            // Zapamiętujemy literę dla poprawnej odpowiedzi (0=A, 1=B...)
+                            if (q.Answers[i].IsCorrect)
+                            {
+                                correctLetter = (char)('A' + i);
+                            }
+                        }
+
+                        sb.AppendLine($"correct={correctLetter}"); // Litera poprawnej
+                        sb.AppendLine("solution="); // Pusta linia dla kompatybilności
+                        sb.AppendLine("---");
+                    }
+
+                    File.WriteAllText(saveFileDialog.FileName, sb.ToString(), Encoding.UTF8);
+                    Alert.Show("Quiz poprawnie wyeksportowany.");
+                }
+                catch (Exception ex)
+                {
+                    Alert.Show($"Błąd podczas eksportu: {ex.Message}");
+                }
+            }
+        }
+
+        private void Import_Click(object sender, RoutedEventArgs e)
+        {
+            Microsoft.Win32.OpenFileDialog openFileDialog = new Microsoft.Win32.OpenFileDialog();
+            openFileDialog.Filter = "Plik tekstowy (*.txt)|*.txt";
+
+            if (openFileDialog.ShowDialog() == true)
+            {
+                try
+                {
+                    string content = File.ReadAllText(openFileDialog.FileName, Encoding.UTF8);
+                    string[] questionBlocks = content.Split(new[] { "---" }, StringSplitOptions.RemoveEmptyEntries);
+
+                    Quiz newQuiz = new Quiz
+                    {
+                        Title = System.IO.Path.GetFileNameWithoutExtension(openFileDialog.FileName),
+                        Author = "Importowany",
+                        Questions = new List<Question>()
+                    };
+
+                    foreach (var block in questionBlocks)
+                    {
+                        var lines = block.Trim().Split(new[] { Environment.NewLine, "\n" }, StringSplitOptions.None)
+                                         .Select(l => l.Trim()).Where(l => !string.IsNullOrEmpty(l)).ToList();
+
+                        if (lines.Count < 2) continue;
+
+                        Question q = new Question { Content = lines[0], Answers = new List<Answer>() };
+                        string correctValue = "";
+
+                        // Analizujemy linie od drugiej (indeks 1)
+                        for (int i = 1; i < lines.Count; i++)
+                        {
+                            string currentLine = lines[i];
+
+                            if (currentLine.StartsWith("correct="))
+                            {
+                                correctValue = currentLine.Replace("correct=", "").Trim().ToUpper();
+                            }
+                            else if (currentLine.StartsWith("solution="))
+                            {
+                                continue; // Ignorujemy wyjaśnienie
+                            }
+                            else
+                            {
+                                // Każda inna linia to po prostu kolejna odpowiedź
+                                q.Answers.Add(new Answer { Content = currentLine, IsCorrect = false });
+                            }
+                        }
+
+                        // Przypisujemy poprawność na podstawie litery (A=0, B=1...)
+                        if (!string.IsNullOrEmpty(correctValue) && correctValue.Length > 0)
+                        {
+                            int correctIndex = correctValue[0] - 'A';
+                            if (correctIndex >= 0 && correctIndex < q.Answers.Count)
+                            {
+                                q.Answers[correctIndex].IsCorrect = true;
+                            }
+                        }
+
+                        newQuiz.Questions.Add(q);
+                    }
+
+                    newQuiz.QuestionsCount = newQuiz.Questions.Count;
+                    SaveImportedQuiz(newQuiz);
+                    LoadQuizzes();
+                    Alert.Show("Import zakończony sukcesem!");
+                }
+                catch (Exception ex)
+                {
+                    Alert.Show("Błąd importu: " + ex.Message);
+                }
+            }
+        }
+
+        // Funkcja pomocnicza do zapisu zaimportowanego quizu do folderu JSON
+        private void SaveImportedQuiz(Quiz quiz)
+        {
+            string projectFolder = Directory.GetParent(AppDomain.CurrentDomain.BaseDirectory).Parent.Parent.FullName;
+            string folder = System.IO.Path.Combine(projectFolder, "Quizy");
+            string filePath = System.IO.Path.Combine(folder, $"{quiz.Title}.json");
+
+            string json = JsonSerializer.Serialize(quiz, new JsonSerializerOptions { WriteIndented = true });
+            File.WriteAllText(filePath, json);
+        }
+
 
         private void DeleteBT_Click(object sender, RoutedEventArgs e)
         {

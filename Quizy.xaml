@@ -68,10 +68,39 @@
                 </ListBox.ItemTemplate>
             </ListBox>
         </Border>
-        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="40,10,40,30">
-            <Button x:Name="NaukaBT" Content="Nauka" Click="Nauka_Click"  Style="{StaticResource RoundedButtonStyle}" Margin="0,0,10,0"  Width="80" IsEnabled="{Binding SelectedItem, ElementName=QuizListBox, Converter={StaticResource NullToBoolConverter}}"/>
-            <Button x:Name="TestBT" Content="Test" Click="Test_Click"  Style="{StaticResource RoundedButtonStyle}" Width="80" IsEnabled="{Binding SelectedItem, ElementName=QuizListBox, Converter={StaticResource NullToBoolConverter}}" Cursor="Hand"/>
-        </StackPanel>
+        <Grid Grid.Row="2" Margin="40,10,40,30">
+            <Button x:Name="ExportBT" 
+            Content="Export" 
+            Click="Export_Click" 
+            Style="{StaticResource RoundedButtonStyle}" 
+            HorizontalAlignment="Left" 
+            Width="80" 
+            IsEnabled="{Binding SelectedItem, ElementName=QuizListBox, Converter={StaticResource NullToBoolConverter}}"/>
+
+            <Button x:Name="ImportBT" 
+        Content="Import" 
+        Click="Import_Click" 
+        Style="{StaticResource RoundedButtonStyle}" 
+        Width="80" Margin="90,0,10,0" HorizontalAlignment="Left"/>
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <Button x:Name="NaukaBT" 
+                Content="Nauka" 
+                Click="Nauka_Click"  
+                Style="{StaticResource RoundedButtonStyle}" 
+                Margin="0,0,10,0"  
+                Width="80" 
+                IsEnabled="{Binding SelectedItem, ElementName=QuizListBox, Converter={StaticResource NullToBoolConverter}}"/>
+
+                <Button x:Name="TestBT" 
+                Content="Test" 
+                Click="Test_Click"  
+                Style="{StaticResource RoundedButtonStyle}" 
+                Width="80" 
+                IsEnabled="{Binding SelectedItem, ElementName=QuizListBox, Converter={StaticResource NullToBoolConverter}}" 
+                Cursor="Hand"/>
+            </StackPanel>
+        </Grid>
 
     </Grid>
 </UserControl>

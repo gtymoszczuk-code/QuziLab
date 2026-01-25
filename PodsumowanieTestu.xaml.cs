@@ -45,5 +45,14 @@ namespace QuziLab
                 mainWindow.contentControl.Content = new Quizy();
             }
         }
+
+        private void FinishBtn_Click(object sender, RoutedEventArgs e)
+        {
+            var mainWindow = Window.GetWindow(this) as MainWindow;
+            if (mainWindow != null)
+            {
+                mainWindow.contentControl.Content = new Quizy();
+            }
+        }
     }
 }

@@ -375,20 +375,30 @@
                                         <ColumnDefinition Width="Auto"/>
                                     </Grid.ColumnDefinitions>
 
-                                    <ContentPresenter Grid.Column="0" VerticalAlignment="Center"/>
+                                    <ContentPresenter Grid.Column="0" VerticalAlignment="Center">
+                                        <ContentPresenter.ContentTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding}" 
+                                                   TextWrapping="Wrap" 
+                                                   VerticalAlignment="Center"/>
+                                            </DataTemplate>
+                                        </ContentPresenter.ContentTemplate>
+                                    </ContentPresenter>
 
                                     <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center">
                                         <TextBlock x:Name="CorrectText" 
                                            Text="poprawna" 
                                            Foreground="#38DAAC" 
                                            FontWeight="Bold" 
-                                           Visibility="Collapsed"/>
+                                           Visibility="Collapsed"
+                                           Margin="10,0,0,0"/>
 
                                         <TextBlock x:Name="WrongText" 
                                            Text="błędna" 
                                            Foreground="#C24092" 
                                            FontWeight="Bold" 
-                                           Visibility="Collapsed"/>
+                                           Visibility="Collapsed"
+                                           Margin="10,0,0,0"/>
                                     </StackPanel>
                                 </Grid>
                             </BulletDecorator>

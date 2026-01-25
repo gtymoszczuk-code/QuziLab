@@ -40,6 +40,8 @@
         </Grid>
 
         <Grid Grid.Row="2" Margin="40,0,40,30">
+            <Button Content="Zakończ" Style="{StaticResource LinkButton}" 
+        HorizontalAlignment="Left" VerticalAlignment="Center" Click="FinishBtn_Click"/>
             <Button Content="Powtórz test" 
                     Style="{StaticResource RoundedButtonStyle}" 
                     HorizontalAlignment="Right" 
