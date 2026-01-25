@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:QuziLab"
         mc:Ignorable="d"
-        Title="QuizLab - generator quizów" Height="550" Width="800" FontSize="18">
+        Title="QuizLab - generator quizów" Height="550" Width="800" FontSize="18" Icon="/logo-image.png">
     <Grid x:Name="main_Grid">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="200"/>
